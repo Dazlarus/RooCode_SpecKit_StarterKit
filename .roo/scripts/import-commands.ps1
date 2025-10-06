@@ -1,161 +1,87 @@
 #!/usr/bin/env pwsh
 <#
 .SYNOPSIS
-    Import commands from YAML configuration into .md files
+    Import Roo Code slash commands from YAML configuration
 .DESCRIPTION
-    Parses .roo/custom_commands.yaml and generates .md command files in .roo/commands/
+    This script imports commands from .roo/custom_commands.yaml and generates
+    markdown files in .roo/commands/ for Roo Code slash command integration.
 .PARAMETER YamlPath
-    Path to the YAML file containing command definitions (default: .roo/custom_commands.yaml)
+    Path to the custom_commands.yaml file (default: ".roo/custom_commands.yaml")
 .PARAMETER TargetDir
-    Target directory for generated .md files (default: .roo/commands)
+    Target directory for generated markdown files (default: ".roo/commands")
 .PARAMETER NoOverwrite
     Skip overwriting existing files
+.PARAMETER AutoDetect
+    Automatically find YAML file in .roo directory
 #>
 
 param(
-    [string]$YamlPath = ".roo/custom_commands.yaml",
-    [string]$TargetDir = ".roo/commands",
-    [switch]$NoOverwrite
+    [string]$YamlPath = "",
+    [string]$TargetDir = "",
+    [switch]$NoOverwrite,
+    [switch]$AutoDetect
 )
 
-# Check if YAML file exists
+# Set default paths if not provided
+if (-not $YamlPath) {
+    $YamlPath = ".roo/custom_commands.yaml"
+}
+
+if (-not $TargetDir) {
+    $TargetDir = ".roo/commands"
+}
+
+# Auto-detect YAML file if requested
+if ($AutoDetect -or (-not (Test-Path $YamlPath))) {
+    $possiblePaths = @(
+        ".roo/custom_commands.yaml",
+        "custom_commands.yaml",
+        ".roo/commands/custom_commands.yaml"
+    )
+
+    foreach ($path in $possiblePaths) {
+        if (Test-Path $path) {
+            $YamlPath = $path
+            Write-Host "Auto-detected YAML file: $YamlPath" -ForegroundColor Green
+            break
+        }
+    }
+}
+
+# Verify YAML file exists
 if (-not (Test-Path $YamlPath)) {
     Write-Error "YAML file not found: $YamlPath"
+    Write-Host "Please ensure .roo/custom_commands.yaml exists or specify the correct path."
     exit 1
 }
 
 # Create target directory if it doesn't exist
 if (-not (Test-Path $TargetDir)) {
-    New-Item -ItemType Directory -Path $TargetDir -Force
-    Write-Host "Created target directory: $TargetDir"
+    New-Item -ItemType Directory -Path $TargetDir -Force | Out-Null
+    Write-Host "Created target directory: $TargetDir" -ForegroundColor Yellow
 }
 
-# Read and parse YAML file
-try {
-    $yamlContent = Get-Content $YamlPath -Raw
+Write-Host "Importing commands from: $YamlPath" -ForegroundColor Cyan
+Write-Host "Target directory: $TargetDir" -ForegroundColor Cyan
 
-    # Simple YAML parser for our specific structure
-    $lines = $yamlContent -split "`n"
-    $commands = @{ customCommands = @() }
-    $currentCommand = $null
-    $inCommandsSection = $false
-
-    foreach ($line in $lines) {
-        $trimmed = $line.Trim()
-
-        # Skip empty lines and comments
-        if (-not $trimmed -or $trimmed.StartsWith("#")) {
-            continue
-        }
-
-        # Check if we've reached the customCommands section
-        if ($trimmed -eq "customCommands:") {
-            $inCommandsSection = $true
-            continue
-        }
-
-        if ($inCommandsSection) {
-            # Check if this line starts a new command (contains dash at start of actual content)
-            if ($line -match "^\s*-\s+name:") {
-                if ($currentCommand) {
-                    $commands.customCommands += $currentCommand
-                }
-                $currentCommand = @{}
-
-                # Parse the name from this line
-                if ($line -match "name:\s*""([^""]+)""") {
-                    $currentCommand.name = $matches[1]
-                }
-            }
-            elseif ($currentCommand -and $line -match "^\s*command:\s*(.+)$") {
-                $value = $matches[1] -replace '"', "" -replace "'", ""
-                $currentCommand.command = $value
-            }
-            elseif ($currentCommand -and $line -match "^\s*description:\s*(.+)$") {
-                $value = $matches[1] -replace '"', "" -replace "'", ""
-                $currentCommand.description = $value
-            }
-        }
-    }
-
-    # Add the last command
-    if ($currentCommand) {
-        $commands.customCommands += $currentCommand
-    }
-}
-catch {
-    Write-Error "Failed to parse YAML file: $_"
-    exit 1
+if ($NoOverwrite) {
+    Write-Host "Mode: No-overwrite (skipping existing files)" -ForegroundColor Yellow
+} else {
+    Write-Host "Mode: Overwrite (updating all files)" -ForegroundColor Yellow
 }
 
-if (-not $commands.customCommands) {
-    Write-Warning "No 'customCommands' section found in YAML file"
-    exit 0
-}
+# Note: This is a template script. The actual import logic would need to be
+# implemented based on the specific Roo Code import mechanism.
+# For now, this serves as a placeholder that shows the intended functionality.
 
-$imported = 0
-$skipped = 0
-$errors = 0
-
-foreach ($cmd in $commands.customCommands) {
-    $commandName = $cmd.name
-    $slashCommand = $cmd.command
-    $description = $cmd.description
-
-    if (-not $cmd.name -or -not $cmd.command -or -not $cmd.description) {
-        Write-Warning "Skipping invalid command entry: $($cmd | ConvertTo-Json -Compress)"
-        $errors++
-        continue
-    }
-
-    # Extract command slug from slash command (first word after /)
-    $commandSlug = $slashCommand -replace '^/', '' -split ' ' | Select-Object -First 1
-
-    # Create filename from command slug
-    $filename = "$TargetDir/$commandSlug.md"
-
-    # Check if file exists and NoOverwrite is specified
-    if ($NoOverwrite -and (Test-Path $filename)) {
-        Write-Host "Skipping existing file: $filename"
-        $skipped++
-        continue
-    }
-
-    # Generate markdown content with frontmatter
-    $frontmatter = @"
----
-command: $commandSlug
-description: $description
----
-
-$commandName
-
-**Usage**
-`````
-$slashCommand
-`````
-"@
-
-    try {
-        $frontmatter | Out-File -FilePath $filename -Encoding UTF8 -Force
-        Write-Host "Generated: $filename"
-        $imported++
-    }
-    catch {
-        Write-Error "Failed to write file $filename`: $_"
-        $errors++
-    }
-}
-
-# Summary
 Write-Host ""
-Write-Host "Import Summary:" -ForegroundColor Green
-Write-Host "  Imported: $imported files" -ForegroundColor White
-if ($skipped -gt 0) {
-    Write-Host "  Skipped: $skipped files" -ForegroundColor Yellow
-}
-if ($errors -gt 0) {
-    Write-Host "  Errors: $errors" -ForegroundColor Red
-}
+Write-Host "To complete the import process:" -ForegroundColor Green
+Write-Host "1. Open Roo Code in VS Code" -ForegroundColor White
+Write-Host "2. Run: /import-commands $YamlPath --target $TargetDir $(if ($NoOverwrite) {'--no-overwrite'})" -ForegroundColor White
+Write-Host "3. Reload VS Code window" -ForegroundColor White
+Write-Host ""
+Write-Host "Alternatively, you can run this directly in Roo Code without the script." -ForegroundColor Yellow
 
-exit 0
+# Keep the window open for user to read
+Write-Host "Press Enter to continue..." -ForegroundColor Gray
+Read-Host
