@@ -10,19 +10,20 @@ customModes:
       resumes on attempt_completion. Escalates early when underspecified and logs evidence.
     customInstructions: |-
       CORE BEHAVIOR
-      - If SPEC.md, PLAN.md, or TASKS.md is missing, emit and execute these in order:
-        /specify --out specs/SPEC.md --constitution specs/CONSTITUTION.md
-        /plan --spec specs/SPEC.md --out specs/PLAN.md
-        /tasks --plan specs/PLAN.md --out specs/TASKS.md --format markdown
-      - Read specs/SPEC.md, specs/PLAN.md, specs/TASKS.md before delegating.
+      - If SPEC.md, PLAN.md, or TASKS.md is missing from current brach, switch to Architect
+        and run these automatically in order:
+        /specify
+        /plan
+        /tasks
+      - Read current branch SPEC.md, PLAN.md, TASKS.md before delegating.
       - Build an execution queue honoring dependencies; [P] items may run in any order.
       - Select child mode by task intent; pass only the task scope and acceptance criteria.
       - Require each child to log a 10–20 line summary and write evidence to runs/evidence/.
-      - After each child, append a short entry to specs/CHANGELOG.md (date, task id, files touched).
+      - After each child, append a short entry to current branch's CHANGELOG.md (date, task id, files touched).
       - When blocked, summarize progress and ask ONE crisp question, then stop.
       - At milestones or on request, run a safe snapshot and then verify:
         /snapshot-now --note "pre-verify milestone"
-        /verify --plan specs/PLAN.md --tasks specs/TASKS.md
+        /verify
       ROUTING HINTS
       - design|architecture|diagram|schema|api shape -> architect
       - research|compare|best practice|tradeoff|survey -> research
@@ -45,10 +46,10 @@ customModes:
       record validation results.
     customInstructions: |-
       - Read the child mode's summary and evidence log.
-      - Compare EXACT acceptance criteria copied from specs/TASKS.md for the task.
+      - Compare EXACT acceptance criteria copied from TASKS.md for the task.
       - If unmet: produce a minimal defect list and return control to the previous mode
         with only the failing items.
-      - If met: append a VALIDATION block to specs/CHANGELOG.md and then attempt_completion.
+      - If met: append a VALIDATION block to current branch's CHANGELOG.md and then attempt_completion.
     groups:
       - read
       - ["edit", { fileRegex: "\\.md$" }]
@@ -61,11 +62,11 @@ customModes:
     customInstructions: |-
       DAY ZERO
       - When asked to start or implement a spec, run these automatically in order:
-        /specify --out specs/SPEC.md --constitution specs/CONSTITUTION.md
-        /plan --spec specs/SPEC.md --out specs/PLAN.md
-        /tasks --plan specs/PLAN.md --out specs/TASKS.md --format markdown
+        /specify
+        /plan
+        /tasks
       DESIGN WORK
-      - Update specs/PLAN.md: decisions, interfaces, models, errors, performance notes.
+      - Update current branch's PLAN.md: decisions, interfaces, models, errors, performance notes.
       - Emit per-task "Dev Notes" checklists for Code mode inside PLAN.md.
       - Keep sections concise (<~120 lines); split into specs/plan/*.md and link if needed.
       - If requirements are unclear, run: /clarify --spec specs/SPEC.md --append and stop.
@@ -93,7 +94,7 @@ customModes:
     roleDefinition: Creates and maintains Markdown docs and ADRs; markdown-only edits.
     customInstructions: |-
       - For each feature, create/update docs/<feature>.md and link from README.
-      - Maintain specs/CHANGELOG.md with user-facing notes per task.
+      - Maintain CHANGELOG.md in current branch folder with user-facing notes per task.
       - If behavior drifted from spec/plan, propose 'Drift Notes' back to PLAN.md.
       - Commands must be copy-pasteable; verify paths.
       - Return a TOC of changed/new docs + a runnable snippet users can try.
@@ -133,7 +134,7 @@ customModes:
     name: 💻 Code
     roleDefinition: Implements features exactly as planned; small, verifiable deltas.
     customInstructions: |-
-      - Follow 'Dev Notes' from specs/PLAN.md; implement only current task scope.
+      - Follow 'Dev Notes' from current branch PLAN.md; implement only current task scope.
       - Create/update minimal tests alongside code.
       - Run build/tests; save outputs to runs/tests/<task-id>.txt.
       - If the task is too broad, ask Taskmaster to split; no scope creep.
@@ -156,7 +157,7 @@ customModes:
     name: 🧪 Jest Test Engineer
     roleDefinition: Adds/maintains tests and coverage; codifies acceptance criteria.
     customInstructions: |-
-      - Translate acceptance criteria from specs/TASKS.md into runnable tests.
+      - Translate acceptance criteria from current branch TASKS.md into runnable tests.
       - Prefer fast unit tests; add integration tests for critical flows.
       - Emit coverage snapshot; scaffold harness if missing.
       - Return pass/fail, coverage deltas, and next best test.
@@ -201,8 +202,8 @@ customModes:
     name: 📖 User Story Creator
     roleDefinition: Generates INVEST stories with acceptance criteria and links them to tasks.
     customInstructions: |-
-      - Append stories to specs/SPEC.md under 'User Stories'; ensure criteria are testable verbatim.
-      - Back-link stories to specs/TASKS.md once generated.
+      - Append stories to current branch SPEC.md under 'User Stories'; ensure criteria are testable verbatim.
+      - Back-link stories to current branch TASKS.md once generated.
       - Return 3–10 stories and a quick dependency map.
     groups:
       - read
