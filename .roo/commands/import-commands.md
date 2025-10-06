@@ -1,17 +1,19 @@
 ---
 command: import-commands
-description: Intelligent YAML to .md converter that parses custom_commands.yaml and generates Roo Code slash command files
+description: YAML to .md converter that parses custom_commands.yaml and creates individual Roo Code slash command files
 argument-hint: "[<yaml-path>] [--target <folder>] [--no-overwrite] [--dry-run]"
 ---
 
-**INSTRUCTIONS:** When this command is run, parse the specified YAML file (or auto-detect .roo/custom_commands.yaml) and generate individual .md files for each command in the .roo/commands/ directory.
+**INSTRUCTIONS:** When this command is run, follow these steps to convert YAML command definitions into individual .md slash command files:
 
 **YAML Structure Expected:**
 ```yaml
 customCommands:
-  - name: "Command Name"
-    command: "/command-to-run"
-    description: "What this command does"
+  - name: "🚀 Command Name"
+    command: "/command-name"
+    description: "Brief description of what this command does"
+    argument-hint: "<arg1> <arg2> <arg3>"
+    instructions: "Detailed instructions for what Roo Code should do when this command is executed"
 ```
 
 **Processing Steps:**
@@ -26,14 +28,15 @@ Each command should create a file with this structure:
 ```markdown
 ---
 command: Command Name
-description: Command description
+description: Brief description of what this command does
+argument-hint: <arg1> <arg2> <arg3>
 ---
 
-Command description
+INSTRUCTIONS: Detailed instructions for what Roo Code should do when this command is executed.
 
 **Usage:**
 ```
-command syntax
+/command-name <arg1> <arg2> <arg3>
 ```
 
 **Category:** Workspace Commands
@@ -64,10 +67,11 @@ command syntax
 **Command Processing Instructions:**
 - Read the YAML file and parse the `customCommands` array
 - For each command object in the array:
-  - Extract `name`, `command`, and `description` fields
-  - Validate all three fields are present and non-empty
+  - Extract `name`, `command`, `description`, `argument-hint`, and `instructions` fields
+  - Validate `name`, `command`, and `description` fields are present and non-empty
+  - `argument-hint` and `instructions` are optional but recommended
   - Create safe filename from command name (replace special characters with underscores)
-  - Generate .md file in `.roo/commands/` directory
+  - Generate .md file in `.roo/commands/` directory with proper frontmatter
 
 **File Naming Convention:**
 - Convert "🚀 Bootstrap Project" → "_Bootstrap_Project.md"

@@ -4,12 +4,16 @@ customCommands:
     description: "Re-import all workspace commands from .roo/custom_commands.yaml (default overwrite)."
 
   - name: "🚀 Bootstrap Project"
-    command: "specify init"
+    command: "/bootstrap-project"
     description: "Initialize a new Specify project from the latest template."
+    argument-hint: "<project-name> <template-type>"
+    instructions: "INSTRUCTIONS: When this command is run, execute 'specify init' to bootstrap a new project with the standard Specify template structure. This will create the initial project files including constitution, spec, plan, and tasks documents. Follow the prompts to configure the project settings and generate the foundational documentation for spec-driven development. After completion, the project will be ready for spec-driven development with all core documents in place."
 
   - name: "✅ Check Tools"
-    command: "specify check"
+    command: "/check-tools"
     description: "Check that all required tools are installed for Specify development."
+    argument-hint: "<tool-type> <environment>"
+    instructions: "INSTRUCTIONS: When this command is run, execute 'specify check' to validate that all required tools are installed for Specify development. This will verify the Spec Kit CLI and other dependencies are properly installed and configured. If any tools are missing, provide clear installation instructions for the user's environment."
 
   - name: "🔧 Implement Range"
     command: "# Work through TASKS.md items manually"
@@ -94,8 +98,8 @@ customCommands:
 
   # --- Import/Export helpers ---
   - name: "📥 Import Commands"
-    command: "# Self-contained: Use /import-commands slash command in Roo Code (no external scripts needed)"
-    description: "Generate .md slash-command files using Roo Code's built-in YAML parsing (works in any environment)."
+    command: "# INSTRUCTIONS: Run /import-commands in Roo Code chat to parse YAML and generate .md files"
+    description: "Intelligent YAML parser that reads custom_commands.yaml and creates individual slash command .md files."
 
   - name: "📤 Export Commands"
     command: "/export-commands --out .roo/custom_commands.yaml"
