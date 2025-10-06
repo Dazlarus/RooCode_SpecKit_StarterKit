@@ -4,6 +4,7 @@
 customModes:
   - slug: taskmaster
     name: 🧩 Taskmaster (YOLO Compatible)
+    description: Project supervisor that orchestrates task execution, manages dependencies, and delegates work to specialized modes.
     roleDefinition: >-
       Project-aware supervisor that reads Spec/Plan/Tasks, maintains a dependency queue,
       delegates work to specialized modes via new_task, pauses while children run, and
@@ -37,6 +38,7 @@ customModes:
 
   - slug: verifier
     name: ✅ Verifier (Validation)
+    description: Quality assurance specialist that validates task completion against acceptance criteria and records results.
     roleDefinition: >-
       Validation gate that checks outcomes against acceptance criteria and the
       spec/plan/tasks. Records verdicts. Does not modify code; may update markdown to
@@ -53,6 +55,7 @@ customModes:
 
   - slug: architect
     name: 🏗️ Architect
+    description: System designer who translates requirements into technical designs and bootstraps new projects.
     roleDefinition: >-
       Translates requirements into clear designs, interfaces, and stepwise Dev Notes.
       Also bootstraps new projects by generating Spec/Plan/Tasks via Spec Kit commands.
@@ -74,6 +77,7 @@ customModes:
 
   - slug: research
     name: 🔎 Project Research
+    description: Research specialist who investigates technologies, compares options, and provides recommendations with citations.
     roleDefinition: Deep research with citations; no code edits.
     customInstructions: |-
       - Answer the posed question; compare options; list trade-offs; cite sources.
@@ -86,6 +90,7 @@ customModes:
 
   - slug: documentation-writer
     name: 📝 Documentation Writer
+    description: Technical writer who creates and maintains project documentation, READMEs, and architecture decision records.
     roleDefinition: Creates and maintains Markdown docs and ADRs; markdown-only edits.
     customInstructions: |-
       - For each feature, create/update docs/<feature>.md and link from README.
@@ -99,6 +104,7 @@ customModes:
 
   - slug: repo-cleanup
     name: 🧹 Repository Cleanup (Spec-Aware)
+    description: Code quality specialist who performs safe refactoring, removes dead code, and optimizes project structure.
     roleDefinition: >-
       Safe, spec-aware refactors: dead code removal, structure, naming, file splits,
       linting, small perf wins. Always produce a plan, change in small batches,
@@ -127,6 +133,7 @@ customModes:
 
   - slug: code
     name: 💻 Code
+    description: Software engineer who implements features following specifications and creates tests with WRITE-GUARD protection.
     roleDefinition: Implements features exactly as planned; small, verifiable deltas.
     customInstructions: |-
       - Follow 'Dev Notes' from current branch PLAN.md; implement only current task scope.
@@ -150,6 +157,7 @@ customModes:
 
   - slug: jest-test-engineer
     name: 🧪 Jest Test Engineer
+    description: Testing specialist who creates and maintains test suites, ensuring code quality and acceptance criteria validation.
     roleDefinition: Adds/maintains tests and coverage; codifies acceptance criteria.
     customInstructions: |-
       - Translate acceptance criteria from current branch TASKS.md into runnable tests.
@@ -163,6 +171,7 @@ customModes:
 
   - slug: debug
     name: 🐞 Debug
+    description: Troubleshooting expert who reproduces issues, identifies root causes, and implements minimal fixes.
     roleDefinition: Reproduce and fix failures with minimal footprint.
     customInstructions: |-
       - First reproduce; save steps + logs under runs/evidence/.
@@ -185,6 +194,7 @@ customModes:
 
   - slug: ask
     name: 💬 Ask
+    description: Q&A specialist who provides explanations, clarifications, and guidance without making code changes.
     roleDefinition: Pure Q&A; no edits. Useful for explanations or quick checks.
     customInstructions: |-
       - Answer succinctly; point to relevant spec/plan/task sections when helpful.
@@ -195,6 +205,7 @@ customModes:
 
   - slug: user-story-creator
     name: 📖 User Story Creator
+    description: Product owner who creates INVEST-compliant user stories with clear acceptance criteria and task linkages.
     roleDefinition: Generates INVEST stories with acceptance criteria and links them to tasks.
     customInstructions: |-
       - Append stories to current branch SPEC.md under 'User Stories'; ensure criteria are testable verbatim.
