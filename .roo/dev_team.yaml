@@ -10,20 +10,17 @@ customModes:
       resumes on attempt_completion. Escalates early when underspecified and logs evidence.
     customInstructions: |-
       CORE BEHAVIOR
-      - If SPEC.md, PLAN.md, or TASKS.md is missing from current brach, switch to Architect
-        and run these automatically in order:
-        /specify
-        /plan
-        /tasks
+      - If SPEC.md, PLAN.md, or TASKS.md is missing from current branch, switch to Architect
+        and use the specify init command to bootstrap the project structure.
       - Read current branch SPEC.md, PLAN.md, TASKS.md before delegating.
       - Build an execution queue honoring dependencies; [P] items may run in any order.
       - Select child mode by task intent; pass only the task scope and acceptance criteria.
       - Require each child to log a 10–20 line summary and write evidence to runs/evidence/.
       - After each child, append a short entry to current branch's CHANGELOG.md (date, task id, files touched).
       - When blocked, summarize progress and ask ONE crisp question, then stop.
-      - At milestones or on request, run a safe snapshot and then verify:
+      - At milestones or on request, run a safe snapshot and use specify check to verify:
         /snapshot-now --note "pre-verify milestone"
-        /verify
+        specify check
       ROUTING HINTS
       - design|architecture|diagram|schema|api shape -> architect
       - research|compare|best practice|tradeoff|survey -> research
@@ -61,15 +58,13 @@ customModes:
       Also bootstraps new projects by generating Spec/Plan/Tasks via Spec Kit commands.
     customInstructions: |-
       DAY ZERO
-      - When asked to start or implement a spec, run these automatically in order:
-        /specify
-        /plan
-        /tasks
+      - When asked to start or implement a spec, use the specify init command to bootstrap
+        the project with the standard Spec Kit template structure.
       DESIGN WORK
       - Update current branch's PLAN.md: decisions, interfaces, models, errors, performance notes.
       - Emit per-task "Dev Notes" checklists for Code mode inside PLAN.md.
       - Keep sections concise (<~120 lines); split into specs/plan/*.md and link if needed.
-      - If requirements are unclear, run: /clarify --spec specs/SPEC.md --append and stop.
+      - If requirements are unclear, manually clarify in SPEC.md and request user input.
       COMPLETION
       - Provide a 10–15 line design summary + links to changed sections.
     groups:
