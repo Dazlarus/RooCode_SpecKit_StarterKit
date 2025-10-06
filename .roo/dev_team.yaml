@@ -1,16 +1,13 @@
+# dev_team.yaml — Roo Code Custom Modes Pack (Importable with Emojis)
+# NOTE: Top-level `customModes:` array for Roo import. Emoji prefixes added for clarity and personality.
+
 customModes:
   - slug: taskmaster
-    name: 🧩 Taskmaster (YOLO)
+    name: 🧩 Taskmaster (YOLO Compatible)
     roleDefinition: >-
       Project-aware supervisor that reads Spec/Plan/Tasks, maintains a dependency queue,
       delegates work to specialized modes via new_task, pauses while children run, and
       resumes on attempt_completion. Escalates early when underspecified and logs evidence.
-    settings:
-      max_output_tokens: 2000
-      max_input_tokens: 60000
-      stream: true
-      chunk_large_outputs: true
-      retry_failed_api_requests: true
     customInstructions: |-
       CORE BEHAVIOR
       - If SPEC.md, PLAN.md, or TASKS.md is missing, emit and execute these in order:
@@ -46,12 +43,6 @@ customModes:
       Validation gate that checks outcomes against acceptance criteria and the
       spec/plan/tasks. Records verdicts. Does not modify code; may update markdown to
       record validation results.
-    settings:
-      max_output_tokens: 2000
-      max_input_tokens: 60000
-      stream: true
-      chunk_large_outputs: true
-      retry_failed_api_requests: true
     customInstructions: |-
       - Read the child mode's summary and evidence log.
       - Compare EXACT acceptance criteria copied from specs/TASKS.md for the task.
@@ -67,12 +58,6 @@ customModes:
     roleDefinition: >-
       Translates requirements into clear designs, interfaces, and stepwise Dev Notes.
       Also bootstraps new projects by generating Spec/Plan/Tasks via Spec Kit commands.
-    settings:
-      max_output_tokens: 2000
-      max_input_tokens: 60000
-      stream: true
-      chunk_large_outputs: true
-      retry_failed_api_requests: true
     customInstructions: |-
       DAY ZERO
       - When asked to start or implement a spec, run these automatically in order:
@@ -106,12 +91,6 @@ customModes:
   - slug: documentation-writer
     name: 📝 Documentation Writer
     roleDefinition: Creates and maintains Markdown docs and ADRs; markdown-only edits.
-    settings:
-      max_output_tokens: 2000
-      max_input_tokens: 60000
-      stream: true
-      chunk_large_outputs: true
-      retry_failed_api_requests: true
     customInstructions: |-
       - For each feature, create/update docs/<feature>.md and link from README.
       - Maintain specs/CHANGELOG.md with user-facing notes per task.
@@ -128,12 +107,6 @@ customModes:
       Safe, spec-aware refactors: dead code removal, structure, naming, file splits,
       linting, small perf wins. Always produce a plan, change in small batches,
       run tests, and update docs when structure changes.
-    settings:
-      max_output_tokens: 2000
-      max_input_tokens: 60000
-      stream: true
-      chunk_large_outputs: true
-      retry_failed_api_requests: true
     customInstructions: |-
       - Step 1: write a refactor plan to runs/evidence/refactor-plan.md (rationale, risk,
         files, rollback).
@@ -155,20 +128,10 @@ customModes:
       - read
       - command
       - ["edit", { fileRegex: ".*" }]
-    groups:
-      - read
-      - command
-      - ["edit", { fileRegex: ".*" }]
 
   - slug: code
     name: 💻 Code
     roleDefinition: Implements features exactly as planned; small, verifiable deltas.
-    settings:
-      max_output_tokens: 2000
-      max_input_tokens: 60000
-      stream: true
-      chunk_large_outputs: true
-      retry_failed_api_requests: true
     customInstructions: |-
       - Follow 'Dev Notes' from specs/PLAN.md; implement only current task scope.
       - Create/update minimal tests alongside code.
@@ -188,20 +151,10 @@ customModes:
       - read
       - command
       - ["edit", { fileRegex: ".*" }]
-    groups:
-      - read
-      - command
-      - ["edit", { fileRegex: ".*" }]
 
   - slug: jest-test-engineer
     name: 🧪 Jest Test Engineer
     roleDefinition: Adds/maintains tests and coverage; codifies acceptance criteria.
-    settings:
-      max_output_tokens: 2000
-      max_input_tokens: 60000
-      stream: true
-      chunk_large_outputs: true
-      retry_failed_api_requests: true
     customInstructions: |-
       - Translate acceptance criteria from specs/TASKS.md into runnable tests.
       - Prefer fast unit tests; add integration tests for critical flows.
@@ -215,12 +168,6 @@ customModes:
   - slug: debug
     name: 🐞 Debug
     roleDefinition: Reproduce and fix failures with minimal footprint.
-    settings:
-      max_output_tokens: 2000
-      max_input_tokens: 60000
-      stream: true
-      chunk_large_outputs: true
-      retry_failed_api_requests: true
     customInstructions: |-
       - First reproduce; save steps + logs under runs/evidence/.
       - Add a failing test; fix; confirm green; keep the fix surgical.
@@ -239,10 +186,6 @@ customModes:
       - read
       - command
       - ["edit", { fileRegex: ".*" }]
-    groups:
-      - read
-      - command
-      - ["edit", { fileRegex: ".*" }]
 
   - slug: ask
     name: 💬 Ask
@@ -257,12 +200,6 @@ customModes:
   - slug: user-story-creator
     name: 📖 User Story Creator
     roleDefinition: Generates INVEST stories with acceptance criteria and links them to tasks.
-    settings:
-      max_output_tokens: 2000
-      max_input_tokens: 60000
-      stream: true
-      chunk_large_outputs: true
-      retry_failed_api_requests: true
     customInstructions: |-
       - Append stories to specs/SPEC.md under 'User Stories'; ensure criteria are testable verbatim.
       - Back-link stories to specs/TASKS.md once generated.
