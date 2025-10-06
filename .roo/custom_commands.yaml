@@ -94,8 +94,8 @@ customCommands:
 
   # --- Import/Export helpers ---
   - name: "📥 Import Commands"
-    command: "/import-commands .roo/custom_commands.yaml --target .roo/commands --overwrite"
-    description: "Generate .md slash-command files from a YAML bundle."
+    command: "bash .roo/scripts/import-commands.sh"
+    description: "Generate .md slash-command files from YAML using the cross-platform intelligent script."
 
   - name: "📤 Export Commands"
     command: "/export-commands --out .roo/custom_commands.yaml"
