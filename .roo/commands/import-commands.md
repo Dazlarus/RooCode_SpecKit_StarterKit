@@ -1,40 +1,35 @@
 ---
 command: import-commands
-description: Cross-platform intelligent import system that executes PowerShell script to generate functional Roo slash commands
+description: Self-contained intelligent import system that parses YAML and generates .md files using Roo Code's built-in capabilities
 argument-hint: "[<yaml-path>] [--target <folder>] [--no-overwrite] [--auto] [--dry-run]"
 ---
 
+**Self-Contained Execution:** This command works entirely within Roo Code without requiring external script execution.
+
 **How It Works:**
-1. **Runs Cross-Platform Shim**: Executes `.roo/scripts/import-commands.sh` (bash script)
-2. **Auto-Detects PowerShell**: Finds and invokes `pwsh` or `powershell` on any OS
-3. **Executes Smart Script**: Runs `.roo/scripts/import-commands.ps1` with proper execution policy
-4. **Generates Commands**: Creates functional `.md` files in `.roo/commands/`
+1. **Auto-Detects YAML**: Finds `.roo/custom_commands.yaml` or specified file
+2. **Parses YAML Structure**: Uses built-in YAML parsing to extract command definitions
+3. **Generates .md Files**: Creates properly formatted slash command files
+4. **No External Dependencies**: Works in any environment without PowerShell or bash scripts
 
 **Smart Features:**
-- **Auto-Discovery**: Finds YAML files in 8 standard locations across platforms
-- **Cross-Platform**: Works on Windows, macOS, and Linux with PowerShell installed
+- **Auto-Discovery**: Finds YAML files in standard locations
+- **Self-Contained**: No external scripts or PowerShell dependencies required
 - **Intelligent Parsing**: Handles actual YAML structure with validation
 - **Fresh Environment Ready**: Works when `.roo/` is copied to new projects
-- **Comprehensive Error Handling**: Provides specific troubleshooting guidance
+- **Built-in Execution**: Uses Roo Code's native file system capabilities
 
-**Detection Priority (8 locations):**
-1. `.roo/custom_commands.yaml` (primary)
-2. `custom_commands.yaml` (root)
-3. `.roo/commands/custom_commands.yaml`
-4. `.roo/commands.yaml`
-5. `.roo/config/commands.yaml`
-6. `config/custom_commands.yaml`
-7. `tools/commands.yaml`
+**Detection Priority:**
+1. `.roo/custom_commands.yaml` (primary location)
+2. `custom_commands.yaml` (project root fallback)
 
 **Execution Flow:**
-```bash
-# What happens when you run this command:
-bash .roo/scripts/import-commands.sh     # Cross-platform shim
-  → pwsh -NoProfile -ExecutionPolicy Bypass -File .roo/scripts/import-commands.ps1
-    → Auto-detects YAML file location
-    → Parses 25 commands from YAML
-    → Generates .md files in .roo/commands/
-    → Returns success/failure with statistics
+```
+1. Auto-detects YAML file location
+2. Parses YAML structure using built-in capabilities
+3. Validates command definitions (name, command, description)
+4. Generates .md files in Roo Code slash command format
+5. Reports success/failure with detailed statistics
 ```
 
 **Usage Examples:**
@@ -67,12 +62,13 @@ Import Summary:
 ```
 
 **Troubleshooting:**
-- **"No YAML file found"**: Ensure `.roo/custom_commands.yaml` exists
-- **"PowerShell not found"**: Install PowerShell 7+ (`pwsh`) on your system
-- **Permission denied**: Check file permissions in `.roo/` directory
-- **Fresh environment**: Works perfectly when `.roo/` is copied to new projects
+- **"No YAML file found"**: Ensure `.roo/custom_commands.yaml` exists in your project
+- **"YAML parsing error"**: Check YAML syntax and ensure proper indentation
+- **"Permission denied"**: Check file write permissions in `.roo/commands/` directory
+- **"No commands generated"**: Verify YAML contains valid command definitions with name, command, and description fields
+- **Fresh environment**: Works perfectly when `.roo/` is copied to new projects (no external dependencies)
 
-**Cross-Platform Compatibility:**
-- **Windows**: Uses `pwsh` or `powershell` with execution policy bypass
-- **macOS/Linux**: Uses `pwsh` if available, falls back to `powershell`
-- **Error Handling**: Detects missing PowerShell and provides installation guidance
+**Compatibility:**
+- **Universal**: Works in any environment with Roo Code (Windows, macOS, Linux)
+- **No Dependencies**: Requires no external tools, PowerShell, or shell scripts
+- **Self-Contained**: Uses only Roo Code's built-in file system and parsing capabilities

@@ -141,12 +141,6 @@ customModes:
       - Run build/tests; save outputs to runs/tests/<task-id>.txt.
       - If the task is too broad, ask Taskmaster to split; no scope creep.
 
-      SCRIPT PREFERENCE
-      - If a script already exists under .roo/scripts/ for the requested functionality,
-        prefer running it with the appropriate shell rather than creating new implementations.
-      - Check .roo/scripts/ directory first; use existing scripts when available.
-      - For PowerShell scripts (.ps1), use: pwsh -NoProfile -ExecutionPolicy Bypass -File script.ps1
-      - For bash scripts (.sh), use: bash script.sh
 
       WRITE-GUARD (if .roo/guard.json enabled)
       - Before editing any file F: copy current F to .roo/local-history/<timestamp>/<F>

@@ -94,8 +94,8 @@ customCommands:
 
   # --- Import/Export helpers ---
   - name: "📥 Import Commands"
-    command: "bash .roo/scripts/import-commands.sh"
-    description: "Generate .md slash-command files from YAML using the cross-platform intelligent script."
+    command: "# Self-contained: Use /import-commands slash command in Roo Code (no external scripts needed)"
+    description: "Generate .md slash-command files using Roo Code's built-in YAML parsing (works in any environment)."
 
   - name: "📤 Export Commands"
     command: "/export-commands --out .roo/custom_commands.yaml"
