@@ -1,0 +1,98 @@
+customCommands:
+  - name: "🔁 Reimport Commands"
+    command: "/reimport"
+    description: "Re-import all workspace commands from .roo/custom_commands.yaml (default overwrite)."
+
+  - name: "🚀 Bootstrap Project"
+    command: "/bootstrap --dir specs --constitution CONSTITUTION.md --spec SPEC.md --plan PLAN.md --tasks TASKS.md"
+    description: "Create Constitution, Spec, Plan, and Tasks all at once."
+
+  - name: "🔧 Implement Range"
+    command: "/implement-range 1..10"
+    description: "Execute a contiguous slice of tasks from TASKS.md, respecting dependencies."
+
+  - name: "✅ Verify Task"
+    command: "/verify-task 1"
+    description: "Validate a single task against acceptance criteria from TASKS.md."
+
+  - name: "🏁 Milestone Check"
+    command: "/milestone \"M1 baseline\" --tasks 1..10 --note \"demo-ready\""
+    description: "Record a milestone and verify a subset of tasks; logs to CHANGELOG.md."
+
+  - name: "❓ Clarify Spec"
+    command: "/clarify-add \"Do we need offline mode?\" \"Yes, read-only offline.\""
+    description: "Append a Q&A clarification to SPEC.md under Clarifications."
+
+  - name: "♻️ Refresh Plan"
+    command: "/refresh-plan --update --emit-deltas specs/TASKS.md"
+    description: "Sync plan/task deltas with current code; note drift in PLAN.md."
+
+  - name: "🧱 ADR Template"
+    command: "/adr \"Decision title\" --status accepted"
+    description: "Create an Architecture Decision Record with standard sections."
+
+  - name: "📚 Docs TOC"
+    command: "/docs-toc --root docs --write"
+    description: "Rebuild a global docs table of contents and update README links."
+
+  - name: "🔍 Docs Validate"
+    command: "/docs-validate --fix --report runs/evidence/docs-validate.md"
+    description: "Lint Markdown, check links, and write a report."
+
+  - name: "🧹 Refactor Plan"
+    command: "/refactor-plan --scope \"src/**\" --max-loc 400 --out runs/evidence/refactor-plan.md"
+    description: "Generate a safe, stepwise refactor plan before edits."
+
+  - name: "🧩 Cleanup Batch"
+    command: "/cleanup-batch 1 --run-tests --abort-on-fail 5"
+    description: "Apply one batch from the refactor plan and run tests."
+
+  - name: "🧪 Test Scope"
+    command: "/test-scope 5..12 --kind unit"
+    description: "Materialize acceptance criteria into tests for a range."
+
+  - name: "📈 Coverage Snapshot"
+    command: "/coverage-snapshot --since HEAD~1"
+    description: "Emit coverage delta snapshot under runs/tests/."
+
+  - name: "🔎 Survey Options"
+    command: "/survey \"Choose OAuth provider\" --criteria security,dx,cost"
+    description: "Research and compare alternatives with citations."
+
+  - name: "🪄 Scaffold Tauri"
+    command: "/scaffold-tauri --name \"Ensign Karl\" --with-stats-footer --ps"
+    description: "Create a minimal Tauri shell with stats footer and PS-friendly scripts."
+
+  - name: "🧰 Scaffold Python Service"
+    command: "/scaffold-python-svc fastapi --port 8787 --with-tests"
+    description: "Scaffold a FastAPI backend with tests and .env template."
+
+  # --- Guard & Recovery commands ---
+  - name: "🛡️ Guard On"
+    command: "/guard-on"
+    description: "Enable Roo's write-guard (snapshots + diff thresholds)."
+
+  - name: "🛑 Guard Off"
+    command: "/guard-off"
+    description: "Disable Roo's write-guard."
+
+  - name: "📸 Snapshot Now"
+    command: "/snapshot-now --note \"manual snapshot\""
+    description: "Create a full workspace snapshot under .roo/local-history/."
+
+  - name: "↩️ Rollback File"
+    command: "/rollback-file src/example.rs"
+    description: "Restore a single file from the most recent snapshot."
+
+  - name: "⏪ Rollback Last"
+    command: "/rollback-last"
+    description: "Restore the entire latest snapshot batch."
+
+  # --- Import/Export helpers ---
+  - name: "📥 Import Commands"
+    command: "/import-commands .roo/custom_commands.yaml --target .roo/commands --overwrite"
+    description: "Generate .md slash-command files from a YAML bundle."
+
+  - name: "📤 Export Commands"
+    command: "/export-commands --out .roo/custom_commands.yaml"
+    description: "Bundle all .roo/commands/*.md into a single YAML file."
