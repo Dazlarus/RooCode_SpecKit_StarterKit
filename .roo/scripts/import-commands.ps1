@@ -28,129 +28,125 @@ param(
     [switch]$ValidateOnly
 )
 
-# Enhanced YAML parser with validation and error reporting
+# Robust YAML parser that handles the actual YAML structure in custom_commands.yaml
 function ConvertFrom-Yaml {
     param([string]$YamlContent)
 
     $commands = @{}
-    $currentCommand = $null
-    $inCommand = $false
     $lineNumber = 0
 
+    # Split into lines and process
     $lines = $YamlContent -split "`n"
+    $i = 0
 
-    foreach ($line in $lines) {
+    while ($i -lt $lines.Count) {
+        $line = $lines[$i]
         $lineNumber++
         $trimmedLine = $line.Trim()
 
         # Skip empty lines and comments
         if ($trimmedLine -eq "" -or $trimmedLine -match "^\s*#") {
+            $i++
             continue
         }
 
         # Handle root level
         if ($trimmedLine -eq "customCommands:" -or $trimmedLine -eq "commands:") {
+            $i++
             continue
         }
 
-        # Detect start of command entry
+        # Detect start of command entry (array item)
         if ($trimmedLine -match "^- name:") {
-            $inCommand = $true
-            $currentCommand = @{}
-            $name = $trimmedLine -replace "^- name:\s*" -replace '"', ''
-            $currentCommand.name = $name
-            $currentCommand.lineNumber = $lineNumber
-        }
-        elseif ($inCommand -and $trimmedLine -match "^\s+command:") {
-            $command = $trimmedLine -replace "^\s*command:\s*" -replace '"', ''
-            $currentCommand.command = $command
-        }
-        elseif ($inCommand -and $trimmedLine -match "^\s+description:") {
-            $description = $trimmedLine -replace "^\s*description:\s*" -replace '"', ''
-            $currentCommand.description = $description
+            $command = @{}
 
-            # Validate command structure
-            if (-not $currentCommand.name) {
-                Write-Warning "Command at line $lineNumber missing name field"
-            }
-            if (-not $currentCommand.command) {
-                Write-Warning "Command '$($currentCommand.name)' at line $lineNumber missing command field"
-            }
-            if (-not $currentCommand.description) {
-                Write-Warning "Command '$($currentCommand.name)' at line $lineNumber missing description field"
+            # Extract name (handle both quoted and unquoted)
+            $nameLine = $trimmedLine
+            if ($nameLine -match '- name:\s*"([^"]+)"') {
+                $command.name = $matches[1]
+            } elseif ($nameLine -match "- name:\s*'([^']+)'") {
+                $command.name = $matches[1]
+            } elseif ($nameLine -match "- name:\s*(.+)") {
+                $command.name = $matches[1].Trim()
             }
 
-            $commands[$currentCommand.name] = $currentCommand
-            $inCommand = $false
-            $currentCommand = $null
+            # Process subsequent lines for this command
+            $i++
+            while ($i -lt $lines.Count) {
+                $nextLine = $lines[$i]
+                $nextTrimmed = $nextLine.Trim()
+
+                # End of command (next array item or end of array)
+                if ($nextTrimmed -match "^- " -or $nextTrimmed -eq "" -or $i -eq ($lines.Count - 1)) {
+                    break
+                }
+
+                # Extract command field
+                if ($nextTrimmed -match "^\s*command:") {
+                    if ($nextTrimmed -match 'command:\s*"([^"]+)"') {
+                        $command.command = $matches[1]
+                    } elseif ($nextTrimmed -match "command:\s*'([^']+)'") {
+                        $command.command = $matches[1]
+                    } elseif ($nextTrimmed -match "command:\s*(.+)") {
+                        $command.command = $matches[1].Trim()
+                    }
+                }
+                # Extract description field
+                elseif ($nextTrimmed -match "^\s*description:") {
+                    if ($nextTrimmed -match 'description:\s*"([^"]+)"') {
+                        $command.description = $matches[1]
+                    } elseif ($nextTrimmed -match "description:\s*'([^']+)'") {
+                        $command.description = $matches[1]
+                    } elseif ($nextTrimmed -match "description:\s*(.+)") {
+                        $command.description = $matches[1].Trim()
+                    }
+                }
+
+                $i++
+            }
+
+            # Validate and add command
+            if ($command.name -and $command.command -and $command.description) {
+                $commands[$command.name] = $command
+            } else {
+                Write-Warning "Incomplete command definition at line $lineNumber"
+            }
+        } else {
+            $i++
         }
     }
 
     return @{customCommands = $commands.Values; totalCommands = $commands.Count}
 }
 
-# Simple YAML parser for PowerShell (basic support for our use case)
-function ConvertFrom-Yaml {
-    param([string]$YamlContent)
-
-    $commands = @{}
-    $currentCommand = $null
-    $inCommand = $false
-
-    $lines = $YamlContent -split "`n"
-
-    foreach ($line in $lines) {
-        $trimmedLine = $line.Trim()
-
-        if ($trimmedLine -eq "customCommands:" -or $trimmedLine -eq "") {
-            continue
-        }
-
-        if ($trimmedLine -match "^- name:") {
-            $inCommand = $true
-            $currentCommand = @{}
-            $name = $trimmedLine -replace "^- name:\s*" -replace '"', ''
-            $currentCommand.name = $name
-        }
-        elseif ($inCommand -and $trimmedLine -match "^command:") {
-            $command = $trimmedLine -replace "^\s*command:\s*" -replace '"', ''
-            $currentCommand.command = $command
-        }
-        elseif ($inCommand -and $trimmedLine -match "^description:") {
-            $description = $trimmedLine -replace "^\s*description:\s*" -replace '"', ''
-            $currentCommand.description = $description
-            $commands[$currentCommand.name] = $currentCommand
-            $inCommand = $false
-        }
-    }
-
-    return @{customCommands = $commands.Values}
-}
-
-# Set default paths if not provided
+# Set default paths if not provided (resolve relative to current working directory)
+$currentDir = Get-Location
 if (-not $YamlPath) {
-    $YamlPath = ".roo/custom_commands.yaml"
+    $YamlPath = Join-Path $currentDir ".roo/custom_commands.yaml"
 }
 
 if (-not $TargetDir) {
-    $TargetDir = ".roo/commands"
+    $TargetDir = Join-Path $currentDir ".roo/commands"
 }
+
+Write-Host "Working directory: $currentDir" -ForegroundColor Cyan
 
 # Enhanced auto-detection with multiple search strategies
 if ($AutoDetect -or (-not $YamlPath) -or (-not (Test-Path $YamlPath))) {
+    $currentDir = Get-Location
     $possiblePaths = @(
-        # Primary locations
-        ".roo/custom_commands.yaml",
-        "custom_commands.yaml",
-        ".roo/commands/custom_commands.yaml",
+        # Primary locations (absolute paths)
+        (Join-Path $currentDir ".roo/custom_commands.yaml"),
+        (Join-Path $currentDir "custom_commands.yaml"),
+        (Join-Path $currentDir ".roo/commands/custom_commands.yaml"),
 
         # Alternative names
-        ".roo/commands.yaml",
-        ".roo/config/commands.yaml",
+        (Join-Path $currentDir ".roo/commands.yaml"),
+        (Join-Path $currentDir ".roo/config/commands.yaml"),
 
         # Backup locations
-        "config/custom_commands.yaml",
-        "tools/commands.yaml"
+        (Join-Path $currentDir "config/custom_commands.yaml"),
+        (Join-Path $currentDir "tools/commands.yaml")
     )
 
     Write-Host "Searching for YAML files..." -ForegroundColor Cyan
@@ -167,7 +163,13 @@ if ($AutoDetect -or (-not $YamlPath) -or (-not (Test-Path $YamlPath))) {
 
     if (-not $YamlPath -or -not (Test-Path $YamlPath)) {
         Write-Warning "No YAML file found in standard locations"
-        Write-Host "Please specify the path manually or create .roo/custom_commands.yaml"
+        Write-Host "Current working directory: $currentDir" -ForegroundColor Yellow
+        Write-Host "Please ensure .roo/custom_commands.yaml exists or specify the correct path."
+        Write-Host ""
+        Write-Host "Troubleshooting steps:" -ForegroundColor Cyan
+        Write-Host "1. Verify .roo/custom_commands.yaml exists in your project root" -ForegroundColor White
+        Write-Host "2. Check file permissions in the .roo directory" -ForegroundColor White
+        Write-Host "3. Specify the full path manually if auto-detection fails" -ForegroundColor White
         exit 1
     }
 }
@@ -264,9 +266,13 @@ foreach ($cmd in $commands.customCommands) {
     $fileName = "$safeName.md"
     $filePath = Join-Path $TargetDir $fileName
 
+    # Ensure paths are absolute for reliability in fresh environments
+    $filePath = [System.IO.Path]::GetFullPath($filePath)
+
     # Handle dry-run mode
     if ($DryRun) {
-        if (Test-Path $filePath) {
+        $fullPath = [System.IO.Path]::GetFullPath($filePath)
+        if (Test-Path $fullPath) {
             Write-Host "  ~ $commandName -> $fileName (would overwrite)" -ForegroundColor Yellow
         } else {
             Write-Host "  + $commandName -> $fileName (new file)" -ForegroundColor Green
@@ -276,7 +282,8 @@ foreach ($cmd in $commands.customCommands) {
     }
 
     # Check if file exists and we're in no-overwrite mode
-    if (Test-Path $filePath -and $NoOverwrite) {
+    $fullPath = [System.IO.Path]::GetFullPath($filePath)
+    if (Test-Path $fullPath -and $NoOverwrite) {
         Write-Host "Skipping (exists): $commandName" -ForegroundColor Gray
         $skippedCount++
         continue
@@ -285,7 +292,7 @@ foreach ($cmd in $commands.customCommands) {
     # Determine action type for feedback
     $action = "Generated"
     $color = "Green"
-    if (Test-Path $filePath) {
+    if (Test-Path $fullPath) {
         $action = "Updated"
         $color = "Blue"
     }
@@ -309,18 +316,19 @@ $commandValue
 "@
 
     try {
-        # Ensure target directory exists
-        if (-not (Test-Path $TargetDir)) {
-            New-Item -ItemType Directory -Path $TargetDir -Force | Out-Null
+        # Ensure target directory exists (use absolute path)
+        $absoluteTargetDir = [System.IO.Path]::GetFullPath($TargetDir)
+        if (-not (Test-Path $absoluteTargetDir)) {
+            New-Item -ItemType Directory -Path $absoluteTargetDir -Force | Out-Null
         }
 
-        Set-Content -Path $filePath -Value $markdownContent -Encoding UTF8 -ErrorAction Stop
+        Set-Content -Path $fullPath -Value $markdownContent -Encoding UTF8 -ErrorAction Stop
         Write-Host "$action`: $commandName -> $fileName" -ForegroundColor $color
         $processedCount++
     } catch {
         Write-Warning "Failed to create file for command: $commandName"
         Write-Warning $_.Exception.Message
-        Write-Host "  Path: $filePath" -ForegroundColor Gray
+        Write-Host "  Path: $fullPath" -ForegroundColor Gray
     }
 }
 
