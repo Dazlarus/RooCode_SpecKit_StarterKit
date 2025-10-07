@@ -11,23 +11,11 @@ customCommands:
     argument-hint: "<tool-type> <environment>"
     instructions: "INSTRUCTIONS: When this command is run, execute 'specify check' to validate that all required tools are installed for Specify development. This will verify the Spec Kit CLI and other dependencies are properly installed and configured. If any tools are missing, provide clear installation instructions for the user's environment."
 
-  - name: "🔧 Implement Range"
-    command: "/implement-range"
-    description: "Execute a contiguous slice of tasks from TASKS.md, respecting dependencies."
-    argument-hint: "<start-task> <end-task>"
-    instructions: "INSTRUCTIONS: When this command is run, execute a range of tasks from the current TASKS.md file. Parse the task range from arguments, validate task dependencies, execute tasks in parallel where possible ([P] markers), update progress tracking, and log results to runs/evidence/. Handle dependency chains properly and provide progress updates for each task in the range."
-
-  - name: "✅ Verify Task"
-    command: "/verify-task"
-    description: "Validate a single task against acceptance criteria from TASKS.md."
-    argument-hint: "<task-id>"
-    instructions: "INSTRUCTIONS: When this command is run, validate the specified task against its acceptance criteria from TASKS.md. Read the task details, compare with the current codebase state, check that all acceptance criteria are met, update task status if completed, and log verification results to runs/evidence/. If criteria are not met, provide specific feedback on what needs to be addressed."
-
-  - name: "🏁 Milestone Check"
-    command: "/milestone"
-    description: "Record a milestone and verify a subset of tasks; logs to CHANGELOG.md."
-    argument-hint: "<milestone-name> <task-range>"
-    instructions: "INSTRUCTIONS: When this command is run, record a milestone checkpoint in the project. Parse the milestone name and task range from arguments, verify completion status of specified tasks, update CHANGELOG.md with milestone entry including date, tasks completed, and project status, and log verification results to runs/evidence/. Provide summary of milestone achievements and next steps."
+  - name: "🔧 Job Manage"
+    command: "/job"
+    description: "Comprehensive task management including implementation, verification, and milestone tracking."
+    argument-hint: "[--implement <start-task> <end-task>] [--verify <task-id>] [--milestone <name> <task-range>] [--list] [--status <task-id>] [--progress]"
+    instructions: "INSTRUCTIONS: When this command is run, provide comprehensive task lifecycle management for development workflow. Parse the provided flags to determine the operation: implement a range of tasks with dependency resolution and parallel execution, verify individual tasks against acceptance criteria, record milestone checkpoints with task verification, list all tasks with status and metadata, show detailed task status, or generate progress reports. Handle all operations with proper dependency chain management, progress tracking, logging to runs/evidence/, and comprehensive status reporting."
 
   - name: "❓ Clarify Spec"
     command: "/clarify-add"
