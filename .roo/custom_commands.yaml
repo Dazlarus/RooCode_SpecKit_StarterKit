@@ -102,15 +102,11 @@ customCommands:
     instructions: "INSTRUCTIONS: When this command is run, create a new FastAPI backend service with the specified configuration. Generate the complete project structure including proper directory layout, dependency management, environment configuration, test scaffolding, and development tooling. Ensure the service is immediately runnable and follows Python/FastAPI best practices."
 
   # --- Guard & Recovery commands ---
-  - name: "🛡️ Guard On"
-    command: "/guard-on"
-    description: "Enable Roo's write-guard (snapshots + diff thresholds)."
-    instructions: "INSTRUCTIONS: When this command is run, enable Roo Code's write-guard protection system. This will activate pre-write snapshots and diff protection for all file modifications. Configure protection thresholds, initialize the snapshot system, and ensure all subsequent file edits are protected against accidental deletion or excessive changes."
-
-  - name: "🛑 Guard Off"
-    command: "/guard-off"
-    description: "Disable Roo's write-guard."
-    instructions: "INSTRUCTIONS: When this command is run, disable Roo Code's write-guard protection system. This will deactivate pre-write snapshots and diff protection for file modifications. Provide clear warnings about the risks of unprotected file edits and suggest best practices for safe development without protection."
+  - name: "🛡️ Guard Configure"
+    command: "/guard"
+    description: "Configure Roo's write-guard system with flexible control over all protection settings."
+    argument-hint: "[--enable|--disable] [--delete-threshold <pct>] [--shrink-threshold <pct>] [--snapshot-dir <dir>] [--status]"
+    instructions: "INSTRUCTIONS: When this command is run, configure Roo Code's write-guard protection system with flexible control over all settings. Parse the provided flags and arguments, read the current .roo/guard.json configuration, apply the requested modifications to enabled status, deleteThresholdPct, shrinkThresholdPct, and snapshotDir, validate the new configuration values, write the updated configuration back to .roo/guard.json, and provide clear feedback about what was changed and the resulting protection state."
 
   - name: "📸 Snapshot Now"
     command: "/snapshot-now"
@@ -140,9 +136,3 @@ customCommands:
     description: "Bundle all .roo/commands/*.md into a single YAML file."
     argument-hint: "<output-file>"
     instructions: "INSTRUCTIONS: When this command is run, intelligently bundle all individual .md slash command files from .roo/commands/ into a single YAML file. Auto-detect the commands directory, scan for all .md files, parse their frontmatter and content, convert them back to YAML format, check if target file would be identical before writing to avoid unnecessary overwrites, and save the consolidated file to the specified output location or default to .roo/custom_commands.yaml."
- 
-  - name: "🔁 Reimport Commands"
-    command: "/reimport"
-    description: "Re-import all workspace commands from .roo/custom_commands.yaml (default overwrite)."
-    instructions: "INSTRUCTIONS: When this command is run, refresh all workspace slash commands by re-importing from the YAML configuration. Parse the current .roo/custom_commands.yaml file, regenerate all .md command files in .roo/commands/, update VS Code's slash command registry, and provide confirmation of successful reload with command count."
-
