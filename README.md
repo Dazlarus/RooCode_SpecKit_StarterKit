@@ -72,7 +72,7 @@ These settings ensure VS Code’s built-in Timeline and Roo’s WRITE-GUARD snap
    ```
 
 2. **🤖 Import Modes**
-   - Roo Code sidebar → **Modes → ⋮ → Import**
+   - Roo Code sidebar → **Modes → Import**
    - Select `.roo/dev_team.yaml`
    - Verify all 11 modes appear in your mode list
 
