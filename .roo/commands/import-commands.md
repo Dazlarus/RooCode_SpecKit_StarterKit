@@ -3,7 +3,7 @@ command: import-commands
 description: Intelligent YAML parser that reads custom_commands.yaml and creates individual slash command .md files.
 ---
 
-**INSTRUCTIONS:** When this command is run, execute the intelligent YAML parser to convert custom_commands.yaml into individual .md slash command files. Auto-detect the YAML file location, parse all command definitions, validate the structure, generate properly formatted .md files in .roo/commands/, and provide a summary of the conversion results with success/failure statistics.
+**INSTRUCTIONS:** When this command is run, intelligently parse the custom_commands.yaml file and generate individual .md slash command files. Auto-detect the YAML file, validate the structure, create properly named .md files in .roo/commands/, and report the results.
 
 **YAML Structure Expected:**
 ```yaml
