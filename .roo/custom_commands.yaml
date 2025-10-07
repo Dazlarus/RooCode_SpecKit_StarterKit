@@ -132,13 +132,17 @@ customCommands:
   # --- Import/Export helpers ---
   - name: "📥 Import Commands"
     command: "# INSTRUCTIONS: Run /import-commands in Roo Code chat to parse YAML and generate .md files"
+    instructions: "INSTRUCTIONS: When this command is run, execute the intelligent YAML parser to convert custom_commands.yaml into individual .md slash command files. Auto-detect the YAML file location, parse all command definitions, validate the structure, generate properly formatted .md files in .roo/commands/, and provide a summary of the conversion results with success/failure statistics."
     description: "Intelligent YAML parser that reads custom_commands.yaml and creates individual slash command .md files."
 
   - name: "📤 Export Commands"
     command: "/export-commands --out .roo/custom_commands.yaml"
     description: "Bundle all .roo/commands/*.md into a single YAML file."
-
+    argument-hint: "<output-file>"
+    instructions: "INSTRUCTIONS: When this command is run, bundle all individual .md slash command files from .roo/commands/ into a single YAML file. Scan the commands directory for all .md files, parse their frontmatter and content, convert them back to YAML format, and save the consolidated file to the specified output location or default to .roo/custom_commands.yaml."
+ 
   - name: "🔁 Reimport Commands"
     command: "/reimport"
     description: "Re-import all workspace commands from .roo/custom_commands.yaml (default overwrite)."
+    instructions: "INSTRUCTIONS: When this command is run, refresh all workspace slash commands by re-importing from the YAML configuration. Parse the current .roo/custom_commands.yaml file, regenerate all .md command files in .roo/commands/, update VS Code's slash command registry, and provide confirmation of successful reload with command count."
 
