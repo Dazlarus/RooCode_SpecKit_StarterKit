@@ -1,25 +1,29 @@
 # Roo Code + Spec Kit Starter Kit
 
-**Complete development environment** that integrates Roo Code's AI-powered workflow system with Spec Kit's specification-driven development methodology.
+Development environment that integrates Roo Code's AI-powered workflow system with Spec Kit's specification-driven development methodology.
 
 ## Overview
 
-This starter kit provides everything needed for **spec-driven development** with Roo Code:
+This starter kit provides tools for spec-driven development with Roo Code:
 
-- **🏗️ Spec-Driven Architecture** - Bootstrap projects with Constitution, Spec, Plan, and Tasks
-- **🛡️ WRITE-GUARD Protection** - Advanced snapshot system with configurable diff thresholds
-- **🧩 Intelligent Task Management** - Dependency-aware task execution with progress tracking
-- **📚 Automated Documentation** - Self-maintaining docs with TOC generation and validation
-- **🔧 Professional Commands** - 25+ specialized slash commands for every development phase
+- **Bootstrap Pipeline** - Complete project initialization with tool validation and setup
+- **Guard Management** - Protection system with flexible configuration
+- **Snapshot Management** - Full snapshot lifecycle with rollback capabilities
+- **Documentation Tools** - Self-maintaining docs with TOC generation and validation
+- **Consolidated Commands** - 11 commands with multiple operations via flags
+- **YAML Workflow** - Maintain all commands in one file with import/export
 
 ## What's Included
 
 ```
 .roo/
-├── commands/                    # 25+ slash command definitions (auto-generated)
-│   ├── import-commands.md      # Intelligent YAML → .md converter
-│   ├── _Bootstrap_Project.md   # Project initialization command
-│   ├── _Check_Tools.md         # Tool validation command
+├── commands/                    # 11 consolidated slash commands (auto-generated)
+│   ├── bootstrap.md            # Complete project initialization pipeline
+│   ├── guard.md                # WRITE-GUARD configuration management
+│   ├── snapshot.md             # Comprehensive snapshot lifecycle
+│   ├── docs.md                 # Documentation management (TOC, validation)
+│   ├── job.md                  # Development workflow (tasks, milestones)
+│   ├── research.md             # Research management (surveys, clarifications)
 │   └── ...                     # All workspace commands
 ├── custom_commands.yaml        # Master command definitions with argument hints
 ├── dev_team.yaml              # 11 specialized AI modes with descriptions
@@ -30,7 +34,7 @@ This starter kit provides everything needed for **spec-driven development** with
     └── tests/                 # Test outputs & coverage reports
 ```
 
-**Quick Start**: Copy `.roo/` to your project root, import modes and commands, and begin spec-driven development.
+Copy `.roo/` to your project root, import modes and commands, and begin development.
 
 Requirements
 -----------
@@ -80,50 +84,54 @@ These settings ensure VS Code’s built-in Timeline and Roo’s WRITE-GUARD snap
    - Reload VS Code window
    - Commands appear in **Settings → Slash Commands → Workspace Commands**
 
-4. **🛡️ Enable Protection** (recommended)
-   ```bash
-   # Activate WRITE-GUARD with pre-configured thresholds
-   /guard-on
-   ```
+4. **Enable Protection** (recommended)
+    ```bash
+    # Activate WRITE-GUARD with pre-configured thresholds
+    /guard --enable
+    ```
 
-5. **🚀 Bootstrap Project**
-   - Switch to **🏗️ Architect** mode
-   - Run `/bootstrap-project <name> <template>`
-   - Creates Constitution, Spec, Plan, and Tasks automatically
+5. **Bootstrap Project**
+    - Switch to **🏗️ Architect** mode
+    - Run `/bootstrap 'MyProject' --interactive`
+    - Complete guided pipeline creates everything automatically
 
-**✨ You're ready!** Start with `/bootstrap-project` and follow the spec-driven workflow.
+Start with `/bootstrap` and follow the development workflow.
 
 ## Available Commands
 
-**25 specialized slash commands** with intelligent argument hints and detailed instructions:
+**11 consolidated commands** with 50+ operations via intelligent flag-based interfaces:
 
+### Core Workflow Commands
+| Command | Primary Operations | Description |
+|---------|-------------------|-------------|
+| **🚀 /bootstrap** | `--interactive`, `--check-only`, `--auto-approve` | Complete guided project initialization pipeline |
+| **🔧 /job** | `--implement`, `--verify`, `--milestone`, `--list`, `--progress` | Development workflow management and task operations |
+| **📚 /docs** | `--generate-toc`, `--validate`, `--list`, `--stats` | Documentation lifecycle management with intelligent defaults |
+| **🔎 /research** | `--survey`, `--clarify`, `--sources`, `--compare`, `--update` | Research management and analysis capabilities |
+
+### System Management Commands
+| Command | Primary Operations | Description |
+|---------|-------------------|-------------|
+| **🛡️ /guard** | `--enable/--disable`, `--delete-threshold`, `--shrink-threshold`, `--status` | WRITE-GUARD protection system configuration |
+| **📸 /snapshot** | `--create`, `--list`, `--rollback-file`, `--rollback-batch`, `--info` | Comprehensive snapshot lifecycle management |
+
+### Import/Export System
+| Command | Operations | Description |
+|---------|-----------|-------------|
+| **📥 /import-commands** | Auto-detection, validation, overwrite protection | Intelligent YAML → .md conversion with optimization |
+| **📤 /export-commands** | Directory scanning, content bundling | .md → YAML consolidation with validation |
+
+### Spec Kit Integration
 | Command | Arguments | Description |
 |---------|-----------|-------------|
-| **🚀 Bootstrap Project** | `<project-name> <template-type>` | Initialize a new Spec Kit project with standard template structure |
-| **✅ Check Tools** | `<tool-type> <environment>` | Validate all required development tools are installed |
-| **🔧 Implement Range** | `<start-task> <end-task>` | Execute contiguous task slice with dependency management |
-| **✅ Verify Task** | `<task-id>` | Validate single task against acceptance criteria |
-| **🏁 Milestone Check** | `<milestone-name> <task-range>` | Record milestone and verify task completion |
-| **❓ Clarify Spec** | `<question> <answer>` | Add Q&A clarification to SPEC.md |
-| **♻️ Refresh Plan** | `<target-file> <comparison-branch>` | Sync documentation with current code state |
-| **🧱 ADR Template** | `<decision-title> <status>` | Create Architecture Decision Record |
-| **📚 Docs TOC** | `<root-dir> <output-file>` | Generate documentation table of contents |
-| **🔍 Docs Validate** | `<target-dir> <output-file>` | Lint markdown and validate links |
-| **🧹 Refactor Plan** | `<scope> <max-changes> <output-file>` | Generate safe refactoring plan |
-| **🧩 Cleanup Batch** | `<batch-number> <test-command>` | Apply refactoring batch with tests |
-| **🧪 Test Scope** | `<task-range> <test-type>` | Generate tests from acceptance criteria |
-| **📈 Coverage Snapshot** | `<comparison-ref> <output-format>` | Generate code coverage report |
-| **🔎 Survey Options** | `<topic> <criteria>` | Research and compare alternatives |
-| **🪄 Scaffold Tauri** | `<app-name> <template-type>` | Create Tauri application shell |
-| **🧰 Scaffold Python Service** | `<service-name> <port> <template-type>` | Create FastAPI backend service |
-| **🛡️ Guard On** | | Enable WRITE-GUARD protection system |
-| **🛑 Guard Off** | | Disable WRITE-GUARD protection |
-| **📸 Snapshot Now** | `<note>` | Create workspace snapshot |
-| **↩️ Rollback File** | `<file-path>` | Restore single file from snapshot |
-| **⏪ Rollback Last** | | Restore entire workspace snapshot |
-| **📥 Import Commands** | | Convert YAML commands to .md files |
-| **📤 Export Commands** | | Bundle .md commands into YAML |
-| **🔁 Reimport Commands** | | Refresh workspace commands from YAML |
+| **♻️ /refresh-plan** | `<target-file> <comparison-branch>` | Sync documentation with current code state |
+| **🧱 /adr** | `<decision-title> <status>` | Create Architecture Decision Record |
+| **🧹 /refactor-plan** | `<scope> <max-changes> <output-file>` | Generate safe refactoring plan |
+| **🧩 /cleanup-batch** | `<batch-number> <test-command>` | Apply refactoring batch with tests |
+| **🧪 /test-scope** | `<task-range> <test-type>` | Generate tests from acceptance criteria |
+| **📈 /coverage-snapshot** | `<comparison-ref> <output-format>` | Generate code coverage report |
+| **🪄 /scaffold-tauri** | `<app-name> <template-type>` | Create Tauri application shell |
+| **🧰 /scaffold-python-svc** | `<service-name> <port> <template-type>` | Create FastAPI backend service |
 
 ## AI Modes & Roles
 
@@ -145,15 +153,15 @@ These settings ensure VS Code’s built-in Timeline and Roo’s WRITE-GUARD snap
 
 ## Recommended Workflow
 
-**Spec-driven development** with intelligent task management:
+Development workflow with consolidated command management:
 
-1. **🏗️ Bootstrap** → `/bootstrap-project <name> <template>` (creates Constitution, Spec, Plan, Tasks)
-2. **🧩 Implement** → Switch to Taskmaster mode → `/implement-range <start> <end>` (dependency-aware execution)
-3. **📝 Document** → Docs auto-update as modes progress with `/docs-toc` and `/docs-validate`
-4. **🧹 Refactor** → `/refactor-plan` → `/cleanup-batch` (safe, stepwise improvements)
-5. **✅ Verify** → `/verify-task <id>` or `/milestone <name> <range>` (validation gates)
+1. **Bootstrap** → `/bootstrap 'MyProject' --interactive` (complete guided setup pipeline)
+2. **Implement** → Switch to Taskmaster mode → `/job --implement <start> <end>` (dependency-aware execution)
+3. **Document** → Auto-maintained with `/docs --generate-toc` and `/docs --validate`
+4. **Refactor** → `/refactor-plan` → `/cleanup-batch` (safe, stepwise improvements)
+5. **Verify** → `/job --verify <task-id>` or `/job --milestone <name> <range>` (validation gates)
 
-**Advanced Pattern**: Use `/snapshot-now` before major changes, `/rollback-file` for quick fixes, and `/refresh-plan` to keep documentation synchronized.
+Use `/snapshot --create` before major changes, `/snapshot --rollback-file` for quick fixes, and `/refresh-plan` to keep documentation synchronized.
 
 Advanced Features
 -----------------
@@ -178,7 +186,7 @@ Advanced Features
 | **Restore lost file** | Use `/rollback-file <path>` or `/rollback-last` |
 | **Commands need updating** | Run `/reimport` to refresh from YAML configuration |
 
-**Quick Fix**: `/import-commands` + VS Code reload solves 90% of setup issues.
+`/import-commands` + VS Code reload solves most setup issues.
 
 Support & Customization
 -----------------------
@@ -188,5 +196,5 @@ Support & Customization
 
 Credits
 -------
-Developed by Darien Hardin for seamless Roo Code + Spec Kit integration.
+Developed by Darien Hardin for Roo Code + Spec Kit integration.
 Maintained and enhanced by the Roo Code community.
