@@ -17,11 +17,6 @@ customCommands:
     argument-hint: "[--implement <start-task> <end-task>] [--verify <task-id>] [--milestone <name> <task-range>] [--list] [--status <task-id>] [--progress]"
     instructions: "INSTRUCTIONS: When this command is run, provide comprehensive task lifecycle management for development workflow. Parse the provided flags to determine the operation: implement a range of tasks with dependency resolution and parallel execution, verify individual tasks against acceptance criteria, record milestone checkpoints with task verification, list all tasks with status and metadata, show detailed task status, or generate progress reports. Handle all operations with proper dependency chain management, progress tracking, logging to runs/evidence/, and comprehensive status reporting."
 
-  - name: "❓ Clarify Spec"
-    command: "/clarify-add"
-    description: "Append a Q&A clarification to SPEC.md under Clarifications."
-    argument-hint: "<question> <answer>"
-    instructions: "INSTRUCTIONS: When this command is run, append a new Q&A clarification to the SPEC.md file. Parse the question and answer from arguments, format them properly with timestamps, add them to the Clarifications section of SPEC.md, and ensure the clarification follows the existing format and style of the document. Update any relevant cross-references if needed."
 
   - name: "♻️ Refresh Plan"
     command: "/refresh-plan"
@@ -65,11 +60,11 @@ customCommands:
     argument-hint: "<comparison-ref> <output-format>"
     instructions: "INSTRUCTIONS: When this command is run, generate a code coverage snapshot comparing the current state with the specified reference point. Execute the project's coverage tool, capture the results, calculate deltas from the comparison reference, format the output according to specifications, and save detailed results to runs/tests/ with timestamps and comparison metrics."
 
-  - name: "🔎 Survey Options"
-    command: "/survey"
-    description: "Research and compare alternatives with citations."
-    argument-hint: "<topic> <criteria>"
-    instructions: "INSTRUCTIONS: When this command is run, research and compare alternatives for the specified topic. Evaluate options based on the provided criteria, conduct thorough analysis including pros/cons, performance characteristics, and compatibility factors. Provide detailed comparisons with citations, recommend the best option with justification, and document the decision-making process for future reference."
+  - name: "🔎 Research Manage"
+    command: "/research"
+    description: "Comprehensive research management including surveys, clarifications, and source analysis."
+    argument-hint: "[--survey <topic> <criteria>] [--clarify <question> <answer>] [--sources <topic>] [--compare <option1> <option2>] [--update]"
+    instructions: "INSTRUCTIONS: When this command is run, provide comprehensive research management capabilities for investigation and analysis. Parse the provided flags to determine the operation: conduct thorough research and comparison of alternatives for specified topics with detailed analysis and citations (can use existing research.md as starting point), append Q&A clarifications to SPEC.md with proper formatting and timestamps, identify and summarize authoritative sources for research topics, or perform detailed comparisons between specific options. Handle all operations with proper citation management, cross-referencing, and comprehensive documentation of findings and recommendations."
 
   - name: "🪄 Scaffold Tauri"
     command: "/scaffold-tauri"
