@@ -108,22 +108,11 @@ customCommands:
     argument-hint: "[--enable|--disable] [--delete-threshold <pct>] [--shrink-threshold <pct>] [--snapshot-dir <dir>] [--status]"
     instructions: "INSTRUCTIONS: When this command is run, configure Roo Code's write-guard protection system with flexible control over all settings. Parse the provided flags and arguments, read the current .roo/guard.json configuration, apply the requested modifications to enabled status, deleteThresholdPct, shrinkThresholdPct, and snapshotDir, validate the new configuration values, write the updated configuration back to .roo/guard.json, and provide clear feedback about what was changed and the resulting protection state."
 
-  - name: "📸 Snapshot Now"
-    command: "/snapshot-now"
-    description: "Create a full workspace snapshot under .roo/local-history/."
-    argument-hint: "<note>"
-    instructions: "INSTRUCTIONS: When this command is run, create a comprehensive snapshot of the current workspace state. Capture all file states, create timestamped backups in .roo/local-history/, include the provided note for reference, and ensure the snapshot can be used for full workspace restoration if needed."
-
-  - name: "↩️ Rollback File"
-    command: "/rollback-file"
-    description: "Restore a single file from the most recent snapshot."
-    argument-hint: "<file-path>"
-    instructions: "INSTRUCTIONS: When this command is run, restore the specified file from the most recent snapshot in .roo/local-history/. Locate the most recent backup of the specified file, verify the restoration will not cause data loss, restore the file to its previous state, and log the restoration action with timestamp and file details."
-
-  - name: "⏪ Rollback Last"
-    command: "/rollback-last"
-    description: "Restore the entire latest snapshot batch."
-    instructions: "INSTRUCTIONS: When this command is run, restore the entire workspace to the state captured in the most recent snapshot batch. Locate the latest snapshot in .roo/local-history/, verify the restoration scope, restore all files to their previous state, and log the restoration action with timestamp and scope details. Provide warnings about data loss and suggest creating a new snapshot before proceeding."
+  - name: "📸 Snapshot Manage"
+    command: "/snapshot"
+    description: "Comprehensive snapshot and rollback management for workspace protection."
+    argument-hint: "[--create [--note <text>]] [--list] [--rollback-file <file-path>] [--rollback-batch <batch-id>] [--info <snapshot-id>]"
+    instructions: "INSTRUCTIONS: When this command is run, provide comprehensive snapshot and rollback management for workspace protection. Parse the provided flags to determine the operation type: create new snapshots with optional notes, list available snapshots with timestamps and metadata, rollback individual files from specific snapshots, rollback entire workspace batches, or show detailed information about specific snapshots. Handle all snapshot operations with proper validation, logging, and safety checks."
 
   # --- Import/Export helpers ---
   - name: "📥 Import Commands"
