@@ -70,14 +70,14 @@ INSTRUCTIONS: Detailed instructions for what Roo Code should do when this comman
   - Extract `name`, `command`, `description`, `argument-hint`, and `instructions` fields
   - Validate `name`, `command`, and `description` fields are present and non-empty
   - `argument-hint` and `instructions` are optional but recommended
-  - Create safe filename from command name (replace special characters with underscores)
+  - Create filename from command field: remove leading slash and add .md extension
   - Generate .md file in `.roo/commands/` directory with proper frontmatter
 
 **File Naming Convention:**
-- Convert "🚀 Bootstrap Project" → "_Bootstrap_Project.md"
-- Convert "✅ Check Tools" → "_Check_Tools.md"
-- Replace all non-alphanumeric characters (except dash, dot, space) with underscores
-- Remove consecutive underscores
+- Use command field directly: "/bootstrap-project" → "bootstrap-project.md"
+- Use command field directly: "/check-tools" → "check-tools.md"
+- Extract filename from command field by removing leading slash
+- Ensure exact match between command name and filename for Roo Code compatibility
 
 **Progress Reporting:**
 - Show which YAML file is being processed
@@ -106,8 +106,8 @@ import-commands .roo/custom_commands.yaml --target .roo/commands
 Searching for YAML files...
 ✓ Found: C:\Projects\MyProject\.roo\custom_commands.yaml
 ✓ Parsed 25 commands from YAML
-Generated: 🚀 Bootstrap Project -> _Bootstrap_Project.md
-Generated: ✅ Check Tools -> _Check_Tools.md
+Generated: 🚀 Bootstrap Project -> bootstrap-project.md
+Generated: ✅ Check Tools -> check-tools.md
 ... (25 total commands)
 
 Import Summary:
