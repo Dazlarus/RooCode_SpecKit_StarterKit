@@ -1,22 +1,15 @@
 customCommands:
-  - name: "🚀 Bootstrap Project"
-    command: "/bootstrap-project"
-    description: "Initialize a new Specify project from the latest template."
-    argument-hint: "<project-name> <template-type>"
-    instructions: "INSTRUCTIONS: When this command is run, execute 'specify init' to bootstrap a new project with the standard Specify template structure. This will create the initial project files including constitution, spec, plan, and tasks documents. Follow the prompts to configure the project settings and generate the foundational documentation for spec-driven development. After completion, the project will be ready for spec-driven development with all core documents in place."
-
-  - name: "✅ Check Tools"
-    command: "/check-tools"
-    description: "Check that all required tools are installed for Specify development."
-    argument-hint: "<tool-type> <environment>"
-    instructions: "INSTRUCTIONS: When this command is run, execute 'specify check' to validate that all required tools are installed for Specify development. This will verify the Spec Kit CLI and other dependencies are properly installed and configured. If any tools are missing, provide clear installation instructions for the user's environment."
+  - name: "🚀 Bootstrap Pipeline"
+    command: "/bootstrap"
+    description: "Complete guided pipeline for initializing a new Specify project with all dependencies and setup."
+    argument-hint: "[<project-name>] [--template <type>] [--interactive] [--check-only] [--skip-tools] [--auto-approve]"
+    instructions: "INSTRUCTIONS: When this command is run, execute the complete Specify project initialization pipeline as a guided workflow. This comprehensive process includes: project structure initialization using 'specify init', tool validation and installation checking, dependency verification, documentation generation, development environment setup, and initial task list creation. The pipeline provides intelligent defaults, interactive prompts for customization, automatic error recovery, and clear progress reporting throughout the entire bootstrap process. Handle edge cases gracefully and provide clear next steps for continuing development after bootstrap completion."
 
   - name: "🔧 Job Manage"
     command: "/job"
     description: "Comprehensive task management including implementation, verification, and milestone tracking."
     argument-hint: "[--implement <start-task> <end-task>] [--verify <task-id>] [--milestone <name> <task-range>] [--list] [--status <task-id>] [--progress]"
     instructions: "INSTRUCTIONS: When this command is run, provide comprehensive task lifecycle management for development workflow. Parse the provided flags to determine the operation: implement a range of tasks with dependency resolution and parallel execution, verify individual tasks against acceptance criteria, record milestone checkpoints with task verification, list all tasks with status and metadata, show detailed task status, or generate progress reports. Handle all operations with proper dependency chain management, progress tracking, logging to runs/evidence/, and comprehensive status reporting."
-
 
   - name: "♻️ Refresh Plan"
     command: "/refresh-plan"
