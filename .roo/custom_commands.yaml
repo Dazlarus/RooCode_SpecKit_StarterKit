@@ -132,7 +132,7 @@ customCommands:
   # --- Import/Export helpers ---
   - name: "📥 Import Commands"
     command: "/import-commands"
-    instructions: "INSTRUCTIONS: When this command is run, intelligently parse the custom_commands.yaml file and generate individual .md slash command files. Auto-detect the YAML file, validate the structure, create properly named .md files in .roo/commands/, and report the results."
+    instructions: "INSTRUCTIONS: When this command is run, intelligently parse the custom_commands.yaml file and generate individual .md slash command files. Auto-detect the YAML file, validate the structure, create properly named .md files in .roo/commands/, check if content would be identical before writing to avoid unnecessary overwrites, and report the results."
     description: "Intelligent YAML parser that reads custom_commands.yaml and creates individual slash command .md files."
 
   - name: "📤 Export Commands"
