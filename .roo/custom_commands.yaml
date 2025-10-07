@@ -47,17 +47,11 @@ customCommands:
     argument-hint: "<decision-title> <status>"
     instructions: "INSTRUCTIONS: When this command is run, create a new Architecture Decision Record (ADR) with the specified title and status. Generate the ADR file in the appropriate docs/adr/ directory following the standard ADR format, include sections for context, decision, consequences, and compliance status. Update any ADR index files and ensure the new ADR follows project conventions and links to related documentation."
 
-  - name: "📚 Docs TOC"
-    command: "/docs-toc"
-    description: "Rebuild a global docs table of contents and update README links."
-    argument-hint: "<root-dir> <output-file>"
-    instructions: "INSTRUCTIONS: When this command is run, scan the specified documentation directory for markdown files, generate a hierarchical table of contents, update the main README.md with links to all discovered documentation, create or update a navigation file if specified, and ensure all internal links are properly formatted and functional."
-
-  - name: "🔍 Docs Validate"
-    command: "/docs-validate"
-    description: "Lint Markdown, check links, and write a report."
-    argument-hint: "<target-dir> <output-file>"
-    instructions: "INSTRUCTIONS: When this command is run, perform comprehensive validation of documentation files. Scan the specified directory for markdown files, check for broken links, validate markdown syntax, identify formatting inconsistencies, generate a detailed validation report, and save results to the specified output file in runs/evidence/."
+  - name: "📚 Docs Manage"
+    command: "/docs"
+    description: "Comprehensive documentation management including TOC generation and validation."
+    argument-hint: "[--generate-toc [--root-dir <dir>] [--output-file <file>]] [--validate [--target-dir <dir>] [--output-file <file>]] [--list] [--stats]"
+    instructions: "INSTRUCTIONS: When this command is run, provide comprehensive documentation management capabilities with intelligent defaults. Parse the provided flags to determine the operation: generate hierarchical table of contents and update README links (auto-detects current directory and uses intelligent defaults for output), perform comprehensive validation of markdown files including link checking and syntax validation (auto-detects docs directory), list all documentation files with metadata, or generate documentation statistics. Handle all operations with proper error handling, progress reporting, detailed result summaries, and smart fallback to standard locations when parameters are not specified."
 
   - name: "🧹 Refactor Plan"
     command: "/refactor-plan"
