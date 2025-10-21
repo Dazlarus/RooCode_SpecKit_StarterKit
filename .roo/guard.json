@@ -1,6 +1,0 @@
-{
-  "enabled": true,
-  "deleteThresholdPct": 25,
-  "shrinkThresholdPct": 20,
-  "snapshotDir": ".roo/local-history"
-}
