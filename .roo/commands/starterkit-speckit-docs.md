@@ -26,17 +26,11 @@ You **MUST** consider the user input before proceeding (if not empty).
    - **Cross-Reference Generation**: Create automatic links between related documents
    - **Multi-Format Output**: Generate documentation in multiple formats (md, txt, html)
 
-4. **Apply documentation best practices**:
-   - Generate feature documentation from spec-template.md with actual content
-   - Create validation checklists using checklist-template.md for review processes
-   - Update agent context files using agent-file-template.md structure
-   - Maintain consistent formatting across all documentation types
-
-5. **Template-driven generation**:
-   - Generate feature documentation from spec-template.md with actual content
-   - Create validation checklists using checklist-template.md for review processes
-   - Update agent context files using agent-file-template.md structure
-   - Maintain consistent formatting across all documentation types
+4. **Apply template-driven generation and best practices**:
+    - Generate feature documentation from `spec-template.md` with actual content
+    - Create validation checklists using `checklist-template.md` for review processes
+    - Update agent context files using `agent-file-template.md` structure
+    - Maintain consistent formatting across all documentation types
 
 6. **Execute automation scripts**:
    - Run `check-prerequisites.ps1` before documentation generation

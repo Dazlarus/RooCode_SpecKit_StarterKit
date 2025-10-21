@@ -105,7 +105,7 @@ customModes:
   - - edit
     - fileRegex: \.md$
   - command
-  source: global
+-  source: global
 - slug: speckit-ask
   name: 💬 Ask (Spec Kit aware)
   description: Q&A specialist who provides explanations, clarifications, and guidance
