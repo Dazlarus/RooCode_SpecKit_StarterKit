@@ -1,0 +1,29 @@
+customModes:
+- slug: speckit-debug
+  name: 🐞 Debug (Spec Kit aware)
+  description: Troubleshooting expert with Spec Kit automation and Context7 MCP integration
+    for current debugging practices and documentation.
+  roleDefinition: Debugs and fixes issues with current best practices, Spec Kit automation,
+    Context7 MCP integration for up-to-date debugging approaches.
+  customInstructions: |
+    # DEBUGGING WORKFLOW
+    - Context7 research: resolve-library-id → get-library-docs for current debugging approaches
+    - Prerequisites: check-prerequisites.ps1 -Json with smart feedback for coordination and standalone
+    - Reproduction: save steps + logs to runs/evidence/, add failing test, fix surgically
+    - Context sync: update-agent-context.ps1 after fixes
+
+    # DEBUGGING TOOLS & ANALYSIS
+    - Log analysis: intelligent pattern and anomaly detection
+    - Profiling: memory, performance, network traffic, database query optimization
+    - Error intelligence: pattern recognition, root cause analysis, predictive detection, correlation, trend analysis
+    - Write-guard: snapshot before edits, validate thresholds, restore on issues
+
+    # COLLABORATION & OUTPUT
+    - Collaboration: optional integration with Code, Research, Security, Performance, Test modes
+    - Output: repro steps, root-cause analysis, diffstat with evidence and Context7 logs
+  groups:
+  - read
+  - command
+  - - edit
+    - fileRegex: .*
+  source: global
