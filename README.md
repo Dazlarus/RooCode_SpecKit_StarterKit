@@ -8,6 +8,28 @@ The `.roo` folder contains pre-configured **Roo Code modes** and **Spec Kit comm
 
 **✨ Recently Updated!** - All configurations have been validated, cleaned up, and tested for optimal performance with the latest Roo Code and Spec Kit integration.
 
+## 🚀 Quick Start (Just One Command!)
+
+Hey there! Want to get up and running super fast? Just run this single command and we'll handle all the setup for you:
+
+```bash
+/starterkit-speckit-setup
+```
+
+This awesome command will automatically:
+- ✨ **Install or update Spec Kit** from the official GitHub repository
+- 🏗️ **Initialize your project** with proper Spec Kit structure and templates
+- 📜 **Create your project constitution** with interactive governance setup
+- 👥 **Configure your development team** (beginner, foundation, or enterprise)
+- ⚙️ **Import everything into Roo Code** automatically
+
+**During setup, you'll choose your team:**
+- 🐣 **Beginner** (7 modes) - Perfect for learning and small projects
+- 🏗️ **Foundation** (10 modes) - Great for solid development workflows
+- 🚀 **Enterprise** (17 modes) - Complete development lifecycle support
+
+The setup will ask you questions about your project and create a constitution that defines your development principles. It's like having a personalized development team that follows your rules!
+
 ## Choose Your Development Style
 
 This **Starter Kit** includes three pre-built mode configurations for **Roo Code**. Each one is optimized for different project sizes and includes the right **Spec Kit** commands:
@@ -36,7 +58,7 @@ Great for solid development workflows:
 - **📖 User Story Creator** - Writes clear user stories with Spec Kit acceptance criteria
 - **✅ Verifier** - Validates completed work against Spec Kit requirements
 
-### 🚀 Enterprise Configuration (17 Roo Code modes) ⭐ **Recently Validated**
+### 🚀 Enterprise Configuration (17 Roo Code modes) 
 The full powerhouse for complete development lifecycles:
 - **🏗️ Architect** - Full system design with comprehensive Spec Kit automation
 - **💬 Ask** - Quick answers about Spec Kit workflows and processes
@@ -90,6 +112,7 @@ This **Starter Kit** creates a powerful workflow where **Spec Kit** provides the
 The `.roo/commands/` folder contains **Spec Kit commands** that Roo Code can use to structure development work:
 
 ### Core Spec Kit Commands
+- **`/starterkit-speckit-setup`** - 🚀 Complete automated setup (install Spec Kit, create constitution, configure team)
 - **`/starterkit-speckit-spec-init`** - Creates structured project specifications and plans
 - **`/starterkit-speckit-status`** - Shows current project status and Spec Kit progress
 - **`/starterkit-speckit-validate`** - Validates Spec Kit structure and requirements
