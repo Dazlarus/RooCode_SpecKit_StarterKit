@@ -1,306 +1,181 @@
-# Welcome to the Roo Code + Spec Kit Starter Kit! 🚀
+# Welcome to Spec Kit + Roo Code! 👋
 
-Hey there! Ready to supercharge your development workflow? This **Starter Kit** combines **Roo Code** (your AI coding buddy) with **Spec Kit** (GitHub's spec-driven development tool) to create a powerful, structured development workflow. It's like having a well-coordinated development team that keeps everything organized and documented!
+Hey there! Whether you're coming from **Roo Code** looking to add structure to your development, or from **Spec Kit** wanting AI-powered assistance, you've found the perfect combination! This guide will help you get started with both tools working together seamlessly.
 
-## What's This Starter Kit All About?
+## 🌟 What You'll Get
 
-The `.roo` folder contains pre-configured **Roo Code modes** and **Spec Kit commands** that work together seamlessly. **Spec Kit** helps structure your development process with specifications, plans, and tasks, while **Roo Code** handles the actual coding, debugging, and documentation using those structured specs.
+**If you're a Roo Code user:** You'll discover how Spec Kit adds structure, documentation, and governance to your AI-powered development workflow.
 
-**✨ Recently Updated!** - All configurations have been validated, cleaned up, and tested for optimal performance with the latest Roo Code and Spec Kit integration.
+**If you're a Spec Kit user:** You'll learn how Roo Code brings intelligent code generation, debugging, and documentation to your structured development process.
 
-## 🚀 Quick Start (Just One Command!)
+**Together:** You'll get a complete development ecosystem that combines the best of both worlds!
 
-Hey there! Want to get up and running super fast? Just run this single command and we'll handle all the setup for you:
+## 🚀 Quick Start (3 Minutes to Awesome!)
+
+*I'm going to assume you already have VS Code and its Roo Code extension installed*
+
+### For Everyone - One Command Setup
 
 ```bash
 /starterkit-speckit-setup
 ```
 
-This awesome command will automatically:
-- ✨ **Install or update Spec Kit** from the official GitHub repository
-- 🏗️ **Initialize your project** with proper Spec Kit structure and templates
-- 📜 **Create your project constitution** with interactive governance setup
-- 👥 **Configure your development team** (beginner, foundation, or enterprise)
-- ⚙️ **Import everything into Roo Code** automatically
+That's it! This single command will:
+- ✨ Install Spec Kit automatically
+- 🏗️ Set up your project structure
+- 📜 Help you create a project constitution (with easy multiple choice options!)
+- 👥 Configure your development team (beginner, foundation, or enterprise)
+- ⚙️ Import everything into Roo Code
 
-**During setup, you'll choose your team:**
-- 🐣 **Beginner** (7 modes) - Perfect for learning and small projects
-- 🏗️ **Foundation** (10 modes) - Great for solid development workflows
-- 🚀 **Enterprise** (17 modes) - Complete development lifecycle support
+**During setup, you'll choose:**
+- Your project name and goals
+- Development principles (Quality, Security, Performance, etc.)
+- Team size (7, 10, or 17 AI modes)
 
-The setup will ask you questions about your project and create a constitution that defines your development principles. It's like having a personalized development team that follows your rules!
+## 🤖 Meet Your AI Development Team
 
-## Choose Your Development Style
+Depending on your choice, you'll get access to specialized AI modes:
 
-This **Starter Kit** includes three pre-built mode configurations for **Roo Code**. Each one is optimized for different project sizes and includes the right **Spec Kit** commands:
+### 🐣 Beginner Team (7 modes) - Perfect for getting started
+- **🏗️ Architect** - Plans your project structure
+- **💬 Ask** - Answers questions (read-only mode)
+- **💻 Code** - Writes and improves code
+- **🐞 Debug** - Finds and fixes bugs
+- **📝 Documentation Writer** - Creates clear docs
+- **🧮 Taskmaster** - Keeps projects organized
+- **✅ Verifier** - Validates work quality
 
-### 🐣 Beginner Configuration (7 Roo Code modes)
-Perfect for getting started or smaller projects:
-- **🏗️ Architect** - Plans your project structure using Spec Kit specifications
-- **💬 Ask** - Answers questions and explains Spec Kit concepts (no code changes)
-- **💻 Code** - Writes and improves your code following Spec Kit plans
-- **🐞 Debug** - Finds and fixes bugs using structured debugging approaches
-- **📝 Documentation Writer** - Creates clear documentation from Spec Kit templates
-- **🧮 Taskmaster** - Keeps your project organized using Spec Kit task management
-- **✅ Verifier** - Validates work against Spec Kit acceptance criteria
+### 🏗️ Foundation Team (10 modes) - Great for growing projects
+All Beginner modes plus:
+- **🎫 Issue Writer** - Creates structured tasks
+- **🧹 Repository Cleanup** - Code quality improvements
+- **🔎 Project Research** - Technology investigation
 
-### 🏗️ Foundation Configuration (11 Roo Code modes)
-Great for solid development workflows:
-- **🏗️ Architect** - Designs your technical foundation with Spec Kit planning
-- **💬 Ask** - Provides guidance on Spec Kit workflows and best practices
-- **💻 Code** - Implements features following detailed Spec Kit specifications
-- **🐞 Debug** - Reproduces and fixes issues with structured debugging
-- **📝 Documentation Writer** - Creates comprehensive docs using Spec Kit templates
-- **🎫 Issue Writer** - Converts requirements into structured Spec Kit tasks
-- **🧹 Repository Cleanup** - Improves code quality and organization
-- **🔎 Project Research** - Investigates technologies for Spec Kit planning
-- **🧮 Taskmaster** - Manages project workflow using Spec Kit coordination
-- **📖 User Story Creator** - Writes clear user stories with Spec Kit acceptance criteria
-- **✅ Verifier** - Validates completed work against Spec Kit requirements
+### 🚀 Enterprise Team (17 modes) - Complete development lifecycle
+All Foundation modes plus:
+- **🔗 API Designer** - RESTful API creation
+- **⚙️ DevOps Engineer** - Deployment automation
+- **🧪 Jest Test Engineer** - Comprehensive testing
+- **📈 Performance Engineer** - Optimization & monitoring
+- **📦 Release Manager** - Version management
+- **🛡️ Security Reviewer** - Security auditing
+- **🔍 Research Updater** - Current best practices
 
-### 🚀 Enterprise Configuration (17 Roo Code modes) 
-The full powerhouse for complete development lifecycles:
-- **🏗️ Architect** - Full system design with comprehensive Spec Kit automation
-- **💬 Ask** - Quick answers about Spec Kit workflows and processes
-- **💻 Code** - Advanced coding with Context7 integration and Spec Kit compliance
-- **🐞 Debug** - Expert troubleshooting using Spec Kit debugging workflows
-- **📝 Documentation Writer** - Professional documentation using Spec Kit standards
-- **🔗 API Designer** - Creates RESTful APIs following Spec Kit specifications
-- **⚙️ DevOps Engineer** - Handles deployments and infrastructure with Spec Kit planning
-- **🎫 Issue Writer** - Structures complex requirements into Spec Kit tasks
-- **🧪 Jest Test Engineer** - Builds comprehensive test suites for Spec Kit validation
-- **📈 Performance Engineer** - Optimizes speed and scalability with Spec Kit monitoring
-- **📦 Release Manager** - Manages versions and releases using Spec Kit coordination
-- **🧹 Repository Cleanup** - Advanced refactoring and cleanup with Spec Kit validation
-- **🔍 Research Updater** - Keeps research current for Spec Kit documentation
-- **🛡️ Security Reviewer** - Security audits following Spec Kit best practices
-- **🧮 Taskmaster** - Intelligent project orchestration using Spec Kit workflows ⭐ **Enhanced**
-- **📖 User Story Creator** - INVEST-compliant user stories for Spec Kit planning
-- **✅ Verifier** - Quality assurance and Spec Kit validation
+## 💡 How It Works Together
 
-## Recent Improvements ✨
+### If You're New to Spec Kit (Roo Code User)
 
-**Continuous Community Enhancement**
+**Spec Kit** helps you structure your development process:
 
-### ✅ Latest Quality Improvements
-- **YAML Syntax Validation** - Fixed parsing errors in enterprise configuration and validated all pre-built team files
-- **File Structure Cleanup** - Resolved duplicate beginner dev team files for cleaner organization
-- **Configuration Testing** - All 3 team configurations tested and confirmed working:
-  - **Beginner** (7 modes) - Perfect for learning and small projects
-  - **Foundation** (10 modes) - Solid workflows for growing teams
-  - **Enterprise** (17 modes) - Complete development lifecycle support
+1. **📋 Specifications** - Write clear requirements that anyone can understand
+2. **🏗️ Planning** - Create technical plans and architecture decisions
+3. **✅ Tasks** - Break work into manageable, trackable pieces
+4. **📚 Documentation** - Generate consistent docs automatically
 
-### 🔧 Technical Enhancements
-- **Enhanced Taskmaster Mode** - Improved delegation logic and Spec Kit integration
-- **Streamlined Instructions** - Optimized custom instructions across all modes for better clarity
-- **Context7 Integration** - Updated research and documentation access patterns
-- **Error Handling** - Improved circuit breaker patterns and fallback routing
+**Roo Code** then uses these structured specs to:
+- Generate code that matches your specifications exactly
+- Debug issues with context from your plans
+- Create documentation following your templates
+- Validate work against your acceptance criteria
 
-### 📋 Community-Driven Development
-This Starter Kit evolves through community contributions and real-world usage. Each configuration is battle-tested and refined based on developer feedback and integration experience.
+### If You're New to Roo Code (Spec Kit User)
 
-## How Spec Kit + Roo Code Work Together
+**Roo Code** brings AI assistance to your structured development:
 
-This **Starter Kit** creates a powerful workflow where **Spec Kit** provides the structure and **Roo Code** does the work:
+1. **🧠 Intelligent Code Generation** - Write code based on your specifications
+2. **🔍 Smart Debugging** - Find and fix issues using your technical plans
+3. **📝 Auto Documentation** - Generate docs from your templates
+4. **⚡ Multiple Specializations** - Different AI modes for different tasks
 
-- **📋 Spec Kit** - Structures your development with specs, plans, and tasks
-- **🤖 Roo Code** - Uses those structured specs to code, debug, and document
-- **🔄 Together** - Creates a smooth, documented, validated development process
+**Spec Kit** provides the structure:
+- Clear specifications for consistent requirements
+- Technical planning for architecture decisions
+- Task management for organized development
+- Quality validation for reliable delivery
 
-## Spec Kit Commands for Roo Code
+## 🎯 Your First Project
 
-The `.roo/commands/` folder contains **Spec Kit commands** that Roo Code can use to structure development work:
-
-### Core Spec Kit Commands
-- **`/starterkit-speckit-setup`** - 🚀 Complete automated setup (install Spec Kit, create constitution, configure team)
-- **`/starterkit-speckit-spec-init`** - Creates structured project specifications and plans
-- **`/starterkit-speckit-status`** - Shows current project status and Spec Kit progress
-- **`/starterkit-speckit-validate`** - Validates Spec Kit structure and requirements
-- **`/starterkit-speckit-update-context`** - Syncs Spec Kit context across Roo Code modes
-
-### Development Workflow Commands
-- **`/starterkit-speckit-feature`** - Complete structured development pipeline
-- **`/starterkit-speckit-architect`** - Technical design and Spec Kit planning
-- **`/starterkit-speckit-code`** - Implementation following Spec Kit specifications
-- **`/starterkit-speckit-debug`** - Structured debugging and issue resolution
-
-### Quality & Operations Commands
-- **`/starterkit-speckit-test`** - Testing workflows with Spec Kit validation
-- **`/starterkit-speckit-performance`** - Performance optimization with monitoring
-- **`/starterkit-speckit-security`** - Security reviews and best practices
-- **`/starterkit-speckit-deploy`** - Deployment automation with Spec Kit planning
-- **`/starterkit-speckit-docs`** - Documentation generation from Spec Kit templates
-- **`/starterkit-speckit-research-update`** - Updates research for Spec Kit planning
-
-## PowerShell Automation Scripts
-
-The **Starter Kit** includes PowerShell scripts that help Roo Code work efficiently with Spec Kit:
-
-### Essential Scripts
-- **`check-prerequisites.ps1`** - Validates Spec Kit environment before starting
-- **`create-new-feature.ps1`** - Sets up new features with Spec Kit structure
-- **`setup-plan.ps1`** - Creates implementation plans and Spec Kit documentation
-- **`update-agent-context.ps1`** - Keeps Roo Code modes synchronized with Spec Kit
-
-### What These Scripts Provide
-- **Environment validation** - Ensures Spec Kit is ready before development
-- **Structured setup** - Creates consistent Spec Kit document organization
-- **Context management** - Keeps all Roo Code modes working from current Spec Kit info
-- **Activity logging** - Tracks all Spec Kit operations and changes
-
-## Spec Kit Template System
-
-**Spec Kit** uses structured templates to maintain consistency across your project documentation:
-
-### Core Spec Kit Templates
-- **`spec-template.md`** - Standard format for feature requirements and specifications
-- **`plan-template.md`** - Technical planning and architecture documentation
-- **`tasks-template.md`** - Task breakdown and phase organization
-- **`checklist-template.md`** - Validation and review workflow checklists
-- **`agent-file-template.md`** - Roo Code context file structure
-
-### Template Capabilities
-- **Dynamic content** - Templates automatically populate with current project information
-- **Cross-linking** - Creates automatic connections between related Spec Kit documents
-- **Consistent formatting** - Ensures all Spec Kit documentation follows the same structure
-- **Incremental updates** - Only modifies sections that actually need changes
-
-## Getting Started with Your Starter Kit 🎯
-
-### 1. Choose Your Roo Code Configuration
-
-Pick the configuration that matches your project size:
-
-```yaml
-# For small projects or learning Spec Kit
-.roo/beginner-dev-team.yaml → custom-modes.yaml
-
-# For solid development workflow with Spec Kit
-.roo/foundation-dev-team.yaml → custom-modes.yaml
-
-# For full development lifecycle with comprehensive Spec Kit
-.roo/enterprise-dev-team.yaml → custom-modes.yaml
-```
-
-Import the YAML in **Roo Code** settings (look in the ... menu for modes section).
-
-### 2. Initialize Your Spec Kit Project
-
-Use the **Spec Kit** spec-init command to create structured project documentation:
-
+### Step 1: Set Up (Already Done!)
 ```bash
-# Tell Spec Kit what you want to build
-specify init "Add user authentication with JWT tokens"
+/starterkit-speckit-setup
 ```
 
-### 3. Validate Your Setup
-
-Run a quick validation to ensure everything works together:
-
+### Step 2: Create Your First Feature
 ```bash
-# Make sure Spec Kit and Roo Code are working properly
-specify validate
+/speckit.specify "Add user login with email and password"
 ```
 
-## How Roo Code Uses Spec Kit
-
-**Roo Code** automatically uses the right mode based on your Spec Kit task:
-
-- **"create a ticket"** or **"new requirement"** → Issue Writer (creates Spec Kit tasks)
-- **"deploy"** or **"release"** → Release Manager (uses Spec Kit deployment plans)
-- **"CI/CD"** or **"infrastructure"** → DevOps Engineer (follows Spec Kit infrastructure specs)
-- **"performance"** or **"optimization"** → Performance Engineer (uses Spec Kit performance requirements)
-- **"API"** or **"REST"** → API Designer (creates Spec Kit API specifications)
-- **"design"** or **"architecture"** → Architect (creates Spec Kit technical plans)
-- **"research"** or **"best practices"** → Research Updater (updates Spec Kit research docs)
-- **"test"** or **"jest"** → Jest Test Engineer (creates Spec Kit test specifications)
-- **"docs"** or **"readme"** → Documentation Writer (uses Spec Kit documentation templates)
-- **"refactor"** or **"cleanup"** → Repository Cleanup (follows Spec Kit code standards)
-- **"debug"** or **"fix"** → Debug (uses Spec Kit debugging workflows)
-- **"implement"** or **"code"** → Code (follows Spec Kit implementation plans)
-
-## Spec Kit Quality Standards
-
-Every **Roo Code** mode working with **Spec Kit** follows strict completion criteria:
-
-- **✅ Tests** - Must pass with evidence logs saved to Spec Kit runs/
-- **📚 Documentation** - Complete and accurate using Spec Kit templates
-- **📦 Artifacts** - Generated and validated according to Spec Kit specifications
-- **🔄 Context** - Synchronized across all Roo Code modes using Spec Kit context
-
-## Creating Custom Roo Code Modes
-
-Want to create your own **Roo Code** modes for specific workflows? You can either:
-
-1. **Manual method** - Edit your `custom-modes.yaml` file:
-
-```yaml
-customModes:
-- slug: your-custom-mode
-  name: Your Custom Mode
-  description: What this mode does with Spec Kit
-  roleDefinition: How it integrates with Spec Kit workflows
-  customInstructions: |
-    Your mode-specific instructions for Spec Kit integration
-  groups:
-  - read
-  - edit
-  source: global
-```
-
-2. **Easy method** - Use **Roo Code's Mode Writer** (available in the modes marketplace) to let AI help you create modes that work well with Spec Kit.
-
-## Customizing Spec Kit Integration
-
-You can customize the PowerShell scripts in `.specify/scripts/powershell/` to:
-
-- Adjust Spec Kit prerequisite checks for your specific environment
-- Add your own Spec Kit validation logic
-- Extend Spec Kit context synchronization for your workflows
-- Integrate Spec Kit with your existing development tools
-
-## Troubleshooting Your Spec Kit Setup
-
-Don't worry, here's how to fix common **Spec Kit + Roo Code** issues:
-
-1. **Spec Kit context out of sync** - Run `specify update-context` to refresh all Roo Code modes
-2. **Missing Spec Kit templates** - Make sure `.specify/templates/` has all the template files
-3. **PowerShell script permissions** - Check that Spec Kit scripts can run on your system
-4. **Spec Kit environment issues** - Run `specify validate` to diagnose project state
-
-### Quick Fix Commands
-
+### Step 3: Plan the Implementation
 ```bash
-# Validate Spec Kit health
-specify validate
-
-# Sync Spec Kit context across Roo Code modes
-specify update-context
-
-# Check Spec Kit project status
-specify status
-
-# Verify Spec Kit prerequisites
-specify check-prerequisites
+/speckit.plan
 ```
 
-## You're All Set! 🌟
+### Step 4: Break Into Tasks
+```bash
+/speckit.tasks
+```
 
-This **Starter Kit** combines the power of **GitHub's Spec Kit** (for structured development) with **Roo Code** (for intelligent code generation) to create a seamless, well-documented development workflow.
+### Step 5: Implement with AI Help
+```bash
+/starterkit-speckit-code
+```
 
-- **Start with Beginner** if you're new to Spec Kit
-- **Use Foundation** for solid development workflows
-- **Go Enterprise** for complete development lifecycles
+## 🌈 What's Different About This Setup?
 
-**Roo Code** will automatically handle the complex coordination between Spec Kit's structured approach and your development needs, so you can focus on building great software!
+### For Roo Code Users
+- **📋 Structure**: No more wondering what to build next - Spec Kit gives you clear specifications
+- **📚 Documentation**: Automatic generation of READMEs, API docs, and technical guides
+- **✅ Quality Gates**: Built-in validation and acceptance criteria checking
+- **👥 Team Modes**: Specialized AI assistants for different aspects of development
 
-## Contributing to the Community 🚀
+### For Spec Kit Users
+- **🤖 AI Assistance**: Intelligent code generation and debugging from your specifications
+- **⚡ Speed**: Faster implementation using AI that understands your technical plans
+- **🔧 Multiple Tools**: Different AI modes for architecture, coding, testing, deployment
+- **📈 Current Best Practices**: AI research for latest frameworks and patterns
 
-Found something that could be improved? Have a suggestion for a new mode or workflow enhancement? This Starter Kit thrives on community contributions! Feel free to:
+## 🛠️ Available Commands
 
-- Report issues or suggestions in your project discussions
-- Share your experiences with different configurations
-- Propose enhancements for better Spec Kit + Roo Code integration
-- Help other developers get started with structured development workflows
+### Getting Started
+- **`/starterkit-speckit-setup`** - Complete automated setup (you're here!)
 
-Have fun building with **Spec Kit + Roo Code**! 🚀
+### Core Workflow
+- **`/speckit.specify`** - Create feature specifications from descriptions
+- **`/speckit.plan`** - Generate technical implementation plans
+- **`/speckit.tasks`** - Create actionable task breakdowns
+- **`/speckit.clarify`** - Get clarification on ambiguous requirements
+
+### Enhanced AI Modes
+- **`/starterkit-speckit-architect`** - Technical design with current best practices
+- **`/starterkit-speckit-code`** - AI-powered implementation with Context7 integration
+- **`/starterkit-speckit-debug`** - Intelligent debugging and issue resolution
+- **`/starterkit-speckit-test`** - Comprehensive testing automation
+- **`/starterkit-speckit-deploy`** - DevOps automation and deployment
+
+## 🎉 You're Ready to Build!
+
+Congratulations! You now have:
+
+✅ **Spec Kit** for structured development workflow
+✅ **Roo Code** for AI-powered assistance
+✅ **Interactive setup** with your custom constitution
+✅ **Specialized AI team** configured for your project size
+✅ **Complete documentation** and templates ready to use
+
+### Next Steps:
+1. **Review your constitution** at `.specify/memory/constitution.md`
+2. **Create your first feature** using `/speckit.specify`
+3. **Explore your AI team modes** - each one is specialized for different tasks
+4. **Build something amazing!** 🚀
+
+## 🤝 Community & Support
+
+- **New to Spec Kit?** The structured approach might feel different at first, but it prevents misunderstandings and ensures quality
+- **New to Roo Code?** The AI assistance will speed up your development while maintaining the structure you need
+- **Questions?** Each AI mode is designed to help you learn and improve
+
+Welcome to the future of structured, AI-enhanced development! 🌟
+
+---
+
+*This Getting Started guide focuses on the friendly collaboration between Spec Kit's structured approach and Roo Code's intelligent assistance. Together, they create a development experience that's both organized and incredibly powerful!*

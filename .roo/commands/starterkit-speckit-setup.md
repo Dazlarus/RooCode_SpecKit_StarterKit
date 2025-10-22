@@ -57,7 +57,6 @@ uv tool install specify-cli --force --from git+https://github.com/github/spec-ki
 
 **Verification:**
 ```bash
-specify --version
 specify --help
 ```
 
@@ -65,16 +64,24 @@ Abort with clear error message if installation fails, providing troubleshooting 
 
 ### 3. Project Initialization
 
-Initialize the Spec Kit project structure:
+Initialize the Spec Kit project structure in current directory:
 
 ```bash
-specify init "Complete project setup with Spec Kit and Roo Code integration"
+# Initialization happens here
+specify init .
 ```
 
+**Context-Aware Project Setup:**
+- Auto-detect project name from current folder name
+- Scan existing files (README, package.json, setup.py) for project context
+- Use LLM analysis to determine optimal project description and objectives
+- Initialize in current directory (avoid creating subfolders)
+
 Verify successful initialization by checking:
-- .specify/ directory created
+- .specify/ directory created in current location
 - Basic project templates available
 - Configuration files in place
+- No subfolder created
 
 ### 4. Interactive Constitution Creation
 
@@ -85,13 +92,19 @@ Guide the user through creating the initial project constitution:
 - Identify tokens like `[PROJECT_NAME]`, `[PRINCIPLE_1_NAME]`, `[RATIFICATION_DATE]`, etc.
 
 **Interactive Value Collection:**
-- **Project Identity:** Ask for project name, description, and main objectives
-- **Core Principles:** Help user define fundamental development principles:
+- **Project Identity:** Ask for project name, description, and main objectives (auto-detect from folder name and existing files)
+- **Core Principles:** Help user define fundamental development principles (auto-detect based on project context):
   - Quality Assurance (testing, validation, acceptance criteria)
   - Security (vulnerability management, secure coding practices)
   - Performance (optimization, monitoring, scalability requirements)
   - Documentation (README, API docs, inline comments)
   - Collaboration (code review, communication, knowledge sharing)
+
+**Smart Context Detection:**
+- Analyze current folder name and repository structure
+- Scan existing files (README, package.json, setup.py, etc.) for project clues
+- Infer project type, scale, and complexity from codebase patterns
+- Auto-recommend team configuration based on detected project characteristics
 
 **Constitution Structure:**
 - Project overview and mission statement
@@ -121,9 +134,19 @@ Present team configuration options and get user preference:
 - **🚀 Enterprise (17 modes)**: All Foundation modes + API Designer, DevOps Engineer, Jest Test Engineer, Performance Engineer, Release Manager, Research Updater, Security Reviewer
 
 **Get Selection:**
-Ask user: "Which team configuration best fits your project needs? (beginner/foundation/enterprise)"
+Present team options and ask: "Which team configuration best fits your project needs?"
 
-**Default:** If no clear preference, recommend Foundation as the balanced middle ground.
+**Multiple Choice Format:**
+- **🐣 Beginner (7 modes)**: Architect, Ask, Code, Debug, Documentation Writer, Taskmaster, Verifier
+- **🏗️ Foundation (10 modes)**: All Beginner modes + Issue Writer, Repository Cleanup, Project Research
+- **🚀 Enterprise (17 modes)**: All Foundation modes + API Designer, DevOps Engineer, Jest Test Engineer, Performance Engineer, Release Manager, Research Updater, Security Reviewer
+
+**Prompt Enhancement:** Always end with "type specific answer below if these choices aren't right"
+
+**Smart Recommendation:**
+- Auto-detect project complexity from codebase size, file count, and existing structure
+- Recommend Beginner for simple projects, Foundation for medium complexity, Enterprise for large/complex projects
+- Allow user override with custom selection
 
 ### 5. Project Constitution Creation
 
@@ -135,10 +158,17 @@ Create the initial project constitution to establish governance principles:
 - Parse existing project context for default values
 
 **Interactive Constitution Setup:**
-- **Project Identity:** Collect project name, description, and purpose
-- **Core Principles:** Establish fundamental development principles (Quality, Security, Performance, Documentation, Testing)
-- **Governance Rules:** Define decision-making processes and amendment procedures
+- **Project Identity:** Collect project name, description, and purpose through guided prompts
+- **Core Principles:** Present multiple choice options for each principle with explanations and customization
+- **Governance Rules:** Define decision-making processes and amendment procedures with user input
 - **Version Management:** Set initial constitution version (1.0.0) and ratification date
+
+**Multiple Choice Principle Selection:**
+- **Quality Assurance:** Choose from Testing-First, Quality Gates, or Comprehensive Coverage approaches
+- **Security:** Select from Basic Security, Compliance-Focused, or Zero-Trust models
+- **Performance:** Pick from Standard Performance, High-Performance, or Real-Time requirements
+- **Documentation:** Choose between Minimal Docs, Developer-Focused, or User-Centric documentation
+- **Collaboration:** Select from Individual, Team-Based, or Open Source collaboration models
 
 **Constitution Content Structure:**
 - Project overview and objectives
@@ -170,14 +200,28 @@ Import the selected team configuration to .roomodes:
 
 **Convert and merge team configuration:**
 - Read the selected team YAML file from Teams/ directory
-- Convert YAML team configuration to JSON format
-- Add all team modes to customModes array
+- Convert YAML team configuration to JSON format, ensuring groups field is preserved
+- Add all team modes to customModes array with proper groups permissions
 - Maintain proper JSON structure and formatting
+
+**YAML to JSON Groups Conversion:**
+- **groups: [read, browser]** → **"groups": ["read", "browser"]**
+- **groups: [read, [edit, {fileRegex: "\\.md$"}], command]** → **"groups": ["read", ["edit", {"fileRegex": "\\.md$"}], "command"]**
+- **groups: [read, [edit, {fileRegex: ".*"}], command]** → **"groups": ["read", ["edit", {"fileRegex": ".*"}], "command"]**
 
 **Write updated configuration:**
 - Save merged configuration back to .roomodes
 - Validate JSON syntax and structure
 - Ensure no data loss or corruption
+
+**Required Groups by Mode:**
+- **Architect**: read, edit (.md files only), command
+- **Ask**: read, browser (read-only mode)
+- **Code**: read, command, edit (all files)
+- **Debug**: read, command, edit (all files)
+- **Documentation Writer**: read, edit (.md files only)
+- **Taskmaster**: read, command
+- **Verifier**: read, edit (.md files only), command
 
 ### 7. Setup Validation
 
@@ -185,8 +229,7 @@ Verify complete setup functionality:
 
 **Spec Kit Validation:**
 ```bash
-specify status
-specify validate
+specify check
 ```
 
 **Constitution Validation:**
@@ -197,8 +240,9 @@ specify validate
 
 **Configuration Validation:**
 - Verify .roomodes file exists and contains valid JSON
-- Confirm team modes are properly imported
+- Confirm team modes are properly imported with required groups field
 - Check that mode count matches selection (7, 10, or 17 modes)
+- Validate groups field format: ["read", ["edit", {"fileRegex": "..."}], "command"]
 
 **Integration Testing:**
 - Test that specify commands work correctly
@@ -229,11 +273,10 @@ Provide comprehensive setup summary and next steps:
 - **Collaboration:** Code review and communication processes outlined
 
 **Next Steps:**
-1. **Restart Roo Code** to load the new team configuration and constitution-aligned modes
-2. **Review Constitution** at `.specify/memory/constitution.md` to understand project governance
-3. **Create First Feature:** `specify init "Add user authentication system"`
-4. **Use Team Modes:** Leverage imported modes for development tasks following constitution principles
-5. **Explore Commands:** Use Spec Kit commands and team workflows for structured development
+1. **Review Constitution** at `.specify/memory/constitution.md` to understand project governance
+2. **Create First Feature:** `/starterkit-speckit-spec-init "Describe the feature you want to make"`
+3. **Use Team Modes:** Leverage imported modes for development tasks following constitution principles
+4. **Explore Commands:** Use Spec Kit commands and team workflows for structured development
 
 **Available Commands:**
 - `/starterkit-speckit-spec-init` - Create structured project specifications (constitution-aligned)
@@ -276,10 +319,9 @@ Provide comprehensive setup summary and next steps:
 - Suggest checking firewall and security settings
 
 **Project Initialization Issues:**
-- Verify git installation and configuration
-- Check repository permissions and access
-- Provide manual initialization commands
-- Suggest checking disk space and permissions
+- **Current Directory Init**: Use `specify init .` to initialize in current location
+- **Git Repository**: Ensure current directory is a git repository before initialization
+- **Permission Issues**: Check write permissions in target directory
 
 **Configuration Import Problems:**
 - Validate YAML team file integrity
