@@ -23,10 +23,10 @@ customModes:
     # PERFORMANCE & COLLABORATION
     - Performance: model architecture performance, scalability, resource planning, monitoring design
     - Collaboration: optional integration with Code, Debug, Security, Performance, Test modes
-    - Completion: 10-15 line summary with links, evidence of scripts and templates'
+    - Completion: 10-15 line summary with links, evidence of scripts and templates
   groups:
   - read
-  - - edit
-    - fileRegex: \.md$
+  - edit
+  - fileRegex: \.md$
   - command
   source: global

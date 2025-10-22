@@ -25,8 +25,8 @@ customModes:
     - Completion: 10-15 line summary with links, evidence of scripts and templates
   groups:
   - read
-  - - edit
-    - fileRegex: \.md$
+  - edit
+  - fileRegex: \.md$
   - command
   source: global
 
@@ -355,7 +355,7 @@ customModes:
   - read
   - command
   - - edit
-    - fileRegex: \.(js|ts|jsx|tsx|spec|test)\.$
+    - fileRegex: \.(js|ts|jsx|tsx|spec|test)$
   source: global
 
 - slug: speckit-devops-engineer
